@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class IndexController {
 
 	@GetMapping("/")
-	public @ResponseBody String index() {
-		return "index페이지";
+	public String index() {
+		return "index";
 	}
 	
 	@GetMapping("/user")
@@ -28,7 +28,7 @@ public class IndexController {
 	}	
 
 	@GetMapping("/join")
-	public @ResponseBody String join() {
+	public String join() {
 		return "join";
 	}
 }
