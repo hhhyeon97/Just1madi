@@ -14,13 +14,10 @@ spring:
     username: night
     password: 123456
     
-
   mvc:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
-
-
 
   jpa:
     hibernate:

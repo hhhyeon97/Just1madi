@@ -12,4 +12,23 @@ public class IndexController {
 		return "index페이지";
 	}
 	
+	@GetMapping("/user")
+	public @ResponseBody String user() {
+		return "user";
+	}
+
+	@GetMapping("/admin")
+	public @ResponseBody String admin() {
+		return "admin";
+	}
+
+	@GetMapping("/login")
+	public @ResponseBody String login() {
+		return "login";
+	}	
+
+	@GetMapping("/join")
+	public @ResponseBody String join() {
+		return "join";
+	}
 }
