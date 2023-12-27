@@ -113,7 +113,7 @@ body {
 </style>
 </head>
 <body>
-	<span id="logotitle"><a href="/">just1madi</a></span>
+	<!--<span id="logotitle"><a href="/">just1madi</a></span>-->
 	<div class="glassmorphism-container">
 		<form name="m" method="post" action="join_ok">
 			<h2>회원가입</h2>
@@ -127,12 +127,11 @@ body {
 				<label for="password">비밀번호</label> <input type="password" id="password"
 					name="password" required>
 			</div>
-		</form>
-		<div id="buttondiv">
-			<input type="submit" value="가입" class="btn btn-dark"
-				onclick="join_check()" />&nbsp;&nbsp;&nbsp; <input type="reset"
-				value="취소" class="btn btn-dark" onclick="resetForm();" />
+			<div id="buttondiv">
+			<input type="submit" value="가입" class="btn btn-dark" />&nbsp;&nbsp;&nbsp;
+			 <input type="reset" value="취소" class="btn btn-dark"/>
 		</div>
+		</form>
 	</div>
 </body>
 </html>
