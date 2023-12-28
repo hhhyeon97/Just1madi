@@ -1,6 +1,7 @@
 package com.haza.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,8 @@ public class IndexController {
 	@Autowired
 	private UserRepository userRepository;
 	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@GetMapping("/")
 	public String index() {
@@ -26,14 +29,19 @@ public class IndexController {
 		return "user";
 	}
 
+	@GetMapping("/user/memo")
+	public String memo() {
+		return "memo";
+	}
+	
 	@GetMapping("/admin")
 	public @ResponseBody String admin() {
 		return "admin";
 	}
 
-	@GetMapping("/login")
-	public @ResponseBody String login() {
-		return "login";
+	@PostMapping("/login_ok")
+	public String login_ok() {
+		return "redirect:/user/memo";
 	}	
 
 	@GetMapping("/join")
@@ -45,8 +53,13 @@ public class IndexController {
 	public String join_ok(MemoUser user) {
 		System.out.println("user ============\n"+user);
 		user.setRole("ROLE_USER");
+		
+		String rawPassword = user.getPassword();
+		String encPassword = bCryptPasswordEncoder.encode(rawPassword);
+		user.setPassword(encPassword);
+		
 		userRepository.save(user);
-		return "join";
+		return "redirect:/";
 	}
 	
 }

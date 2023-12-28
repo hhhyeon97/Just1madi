@@ -122,7 +122,7 @@ h2 {
 		<form method="post" name="m" action="login_ok">
 			<h2>welcome just1madi !</h2>
 			<div class="form-group">
-				<label for="username">아이디</label> <input type="text" id="username" name="username">
+				<label for="username">닉네임</label> <input type="text" id="username" name="username">
 			</div>
 			<div class="form-group">
 				<label for="password">비밀번호</label> <input type="password" id="password" name="password">
