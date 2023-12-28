@@ -23,11 +23,15 @@
 				<tr>
 					<td>${memo.title}</td>
 					<td>${memo.content}</td>
-				</tr>
 				<td>
 					<!-- 수정 버튼 -->
 					 <a href="<c:url value='/memo/edit/${memo.memoId}' />">Edit</a>
+				  <!-- 삭제 폼 -->
+            <form method="post" action="<c:url value='/memo/delete/${memo.memoId}' />" style="display: inline;">
+                <input type="submit" value="Delete" onclick="return confirm('정말 삭제하시나요?');"/>
+            </form>
 				</td>
+				</tr>
 			</c:forEach>
 		</tbody>
 	</table>

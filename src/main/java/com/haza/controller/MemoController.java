@@ -90,6 +90,19 @@ public class MemoController {
 		return "redirect:/memo/list";
 	}	
 
+	// 메모 삭제 처리
+	@PostMapping("/memo/delete/{memoId}")
+	public String deleteMemo(@PathVariable("memoId") int memoId) {
+		// 메모 ID를 기반으로 메모 조회
+		Memo memo = memoRepository.findById(memoId)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid memoId"));
+
+		// 메모 삭제
+		memoRepository.delete(memo);
+
+		// 삭제가 완료된 후 메모 목록 페이지로 이동
+		return "redirect:/memo/list";
+	}
 
 
 }
