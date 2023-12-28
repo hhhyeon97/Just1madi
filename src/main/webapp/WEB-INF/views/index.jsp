@@ -12,44 +12,9 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, user-scalable=no, 
   maximum-scale=1.0, minimum-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <title>just1madi</title>
 <style>
-@font-face {
-	font-family: 'Cafe24Ohsquare';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-@font-face {
-    font-family: 'yg-jalnan';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-	font-family: 'NanumSquareRound';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-body {
-	font-family: 'NanumSquareRound';
-	background-image: url("/resources/images/img04.jpg");
-	background-position: 50% 50%;
-	background-repeat: no-repeat;
-	background-size: cover;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
-	margin: 0;
-}
-
 h2 {
 	font-family: 'yg-jalnan';
 	letter-spacing: 5px;
