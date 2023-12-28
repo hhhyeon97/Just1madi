@@ -23,13 +23,8 @@ public class IndexController {
 	public String index() {
 		return "index";
 	}
-	
-	@GetMapping("/user")
-	public @ResponseBody String user() {
-		return "user";
-	}
 
-	@GetMapping("/user/memo")
+	@GetMapping("/memo")
 	public String memo() {
 		return "memo";
 	}
@@ -41,7 +36,7 @@ public class IndexController {
 
 	@PostMapping("/login_ok")
 	public String login_ok() {
-		return "redirect:/user/memo";
+		return "redirect:/memo";
 	}	
 
 	@GetMapping("/join")

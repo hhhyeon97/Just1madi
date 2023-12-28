@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메모장</title>
+<title>Insert title here</title>
 </head>
 <body>
-메모장<br>
-<a href="/memo/create">메모 추가</a>
+메모장 입력폼
 </body>
 </html>
