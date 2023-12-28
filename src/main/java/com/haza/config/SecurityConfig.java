@@ -27,7 +27,7 @@ public class SecurityConfig {
 	        		.formLogin()
 	        		.loginPage("/")
 	        		.loginProcessingUrl("/login_ok")
-	        		.defaultSuccessUrl("/memo");
+	        		.defaultSuccessUrl("/memo/list");
 	        		return http.build();
 	    }
 }

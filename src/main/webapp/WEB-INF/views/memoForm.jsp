@@ -11,6 +11,7 @@
 제목 <input type="text" name="title" id="title"><br><br>
 내용 <textarea name="content" id="content"></textarea>
 <input type="submit" value="저장">
+<input type="button" value="목록" onclick="location='/memo/list';">
 </form>
 </body>
 </html>

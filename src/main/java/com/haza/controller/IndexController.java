@@ -25,7 +25,7 @@ public class IndexController {
 	}
 
 	@GetMapping("/memo")
-	public String memo() {
+	public @ResponseBody String memo() {
 		return "memo";
 	}
 	
