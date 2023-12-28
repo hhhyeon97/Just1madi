@@ -62,17 +62,33 @@ public class MemoController {
 	// 메모 수정 폼으로 이동
 	@GetMapping("/memo/edit/{memoId}")
 	public String editMemoForm(@PathVariable("memoId") int memoId, Model model) {
-	    // 메모 ID를 기반으로 메모 조회
-	    Memo memo = memoRepository.findById(memoId)
-	            .orElseThrow(() -> new IllegalArgumentException("Invalid memoId"));
+		// 메모 ID를 기반으로 메모 조회
+		Memo memo = memoRepository.findById(memoId)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid memoId"));
 
-	    // 메모 정보를 모델에 추가
-	    model.addAttribute("memo", memo);
+		// 메모 정보를 모델에 추가
+		model.addAttribute("memo", memo);
 
-	    return "memoEdit";
+		return "memoEdit";
 	}
-	
-	
+
+	// 메모 수정 처리
+	@PostMapping("/memo/edit/{memoId}")
+	public String editMemo(@PathVariable("memoId") int memoId, @ModelAttribute Memo updatedMemo) {
+		// 기존 메모 조회
+		Memo memo = memoRepository.findById(memoId)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid memoId"));
+
+		// 기존 메모의 내용 업데이트
+		memo.setTitle(updatedMemo.getTitle());
+		memo.setContent(updatedMemo.getContent());
+
+		// 메모 저장
+		memoRepository.save(memo);
+
+		// 수정이 완료된 후 메모 목록 페이지로 이동
+		return "redirect:/memo/list";
+	}	
 
 
 

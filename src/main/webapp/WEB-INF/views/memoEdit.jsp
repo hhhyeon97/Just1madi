@@ -9,7 +9,7 @@
 <body>
 <h2>Edit Memo</h2>
 
-<form method="post" action="<c:url value='/memo/edit/${memoId}' />">
+<form method="post"  action="${pageContext.request.contextPath}/memo/edit/${memoId}">
     <label>Title: </label>
     <input type="text" name="title" value="${memo.title}" /><br/>
 
