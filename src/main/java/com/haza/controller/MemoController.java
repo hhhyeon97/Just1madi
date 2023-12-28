@@ -1,6 +1,7 @@
 package com.haza.controller;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -9,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.haza.model.Memo;
 import com.haza.model.MemoUser;
@@ -46,9 +46,23 @@ public class MemoController {
         return "redirect:/memo/list";
     }
     
+    /*
     @GetMapping("/memo/list")
     public @ResponseBody String memoList() {
     	return "memo목록";
+    }
+    */
+    
+    // 메모 목록 조회
+    @GetMapping("/memo/list")
+    public String memoList(@AuthenticationPrincipal MemoUser currentUser, Model model) {
+        // 현재 로그인한 사용자의 메모 목록 조회
+        List<Memo> memoList = memoRepository.findByUser(currentUser);
+
+        // 뷰에 메모 목록 전달
+        model.addAttribute("memoList", memoList);
+
+        return "memoList";
     }
 
 }
