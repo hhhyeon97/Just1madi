@@ -13,6 +13,7 @@
 	content="width=device-width, initial-scale=1.0, user-scalable=no, 
   maximum-scale=1.0, minimum-scale=1.0">
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>  
 <title>회원가입</title>
 <style>
 
@@ -78,18 +79,95 @@
 </style>
 </head>
 <script>
-function check(){
-	if(m.username.value==0){
-		alert("닉네임을 입력하세요!");
-		m.username.focus();
-		return false;
-	}
-	else if(m.password.value==0){
-		alert("비밀번호를 입력하세요!");
-		m.password.focus();
-		return false;
+function check() {
+    if (m.username.value == 0) {
+        alert("닉네임을 입력하세요!");
+        m.username.focus();
+        return false;
+    } else if (m.password.value == 0) {
+        alert("비밀번호를 입력하세요!");
+        m.password.focus();
+        return false;
+    }
+    else {
+		if ($("#idcheck").text() === '사용 가능한 아이디입니다.') {
+			alert("회원가입에 성공하였습니다!");
+			return false;
+		} else {
+			alert("아이디 중복검사를 먼저 진행해주세요.");
+			return false;
+		}
 	}
 }
+
+function id_check(){
+	$("#idcheck").hide();
+	$username=$.trim($("#username").val());
+	if($username.length < 4){
+		$newtext='<font color="red" size="3"><b>아이디는 4자 이상이어야 합니다.</b></font>';
+		$("#idcheck").text('');
+		$("#idcheck").show();
+		$("#idcheck").append($newtext);
+		$("#username").val('').focus();
+		return false;
+	};
+	if($username.length > 12){
+		$newtext='<font color="red" size="3"><b>아이디는12자 이하이어야 합니다.</b></font>';
+		$("#idcheck").text('');
+		$("#idcheck").show();
+		$("#idcheck").append($newtext);
+		$("#username").val('').focus();
+		return false;
+	};
+	if(!(validate_userid($username))){
+		$newtext='<font color="red" size="3"><b>아이디는 영문소문자,숫자,_조합만 가능합니다.</b></font>';
+		$("#idcheck").text('');
+		$("#idcheck").show();
+		$("#idcheck").append($newtext);
+		$("#username").val('').focus();
+		return false;
+	};
+    $.ajax({
+        type:"POST",   
+        url:"idCheck", 
+        data: {"username":$username},
+        datatype:"int",
+        success: function (data) {
+      	  if(data==1){//중복 아이디가 있다면
+      		$newtext='<font color="red" size="3"><b>중복 아이디입니다.</b></font>';
+      		$("#idcheck").text('');
+        	$("#idcheck").show();
+        	$("#idcheck").append($newtext);          		
+          	$("#username").val('').focus();
+          	 console.log("중복 아이디 입니다!");
+          	return false;
+      	  }else{//중복 아이디가 아니면
+      		$newtext='<font color="blue" size="3"><b>사용 가능한 아이디입니다.</b></font>';
+      		$("#idcheck").text('');
+      		$("#idcheck").show();
+      		$("#idcheck").append($newtext);
+      		$("#password").focus();
+      		console.log("중복 아이디가 아닙니다!");
+      	  }  	    	  
+        },
+    	  error:function(){
+    		  alert("data error");
+    	  }
+      });//$.ajax
+}
+
+
+
+
+//정규표현식
+function validate_userid($username)
+{
+var pattern= new RegExp(/^[a-z0-9_]+$/);//아이디를 영문소문자와 숫자 와 _조합으로 처리
+return pattern.test($username);
+};
+
+
+
 </script>
 <body>
 	<!--<span id="logotitle"><a href="/">just1madi</a></span>-->
@@ -97,10 +175,11 @@ function check(){
 		<form name="m" method="post" action="join_ok">
 			<h2>회 원 가 입</h2>
 			<div class="form-group">
-				<label for="username">닉네임</label> <input type="text" id="username" name="username"
-					required> <input type="button" value="닉네임중복체크"
-					id="checkbtn" class="btn btn-dark" onclick="id_check();"> <br>
-				<span id="idcheck"></span>
+				<label for="username">닉네임</label> <input type="text" id="username" name="username" required>
+			<input type="button" value="아이디중복체크"
+						id="checkbtn" class="btn btn-dark" onclick="id_check();">
+			<br>
+			<span id="idcheck"></span>
 			</div>
 			<div class="form-group">
 				<label for="password">비밀번호</label> <input type="password" id="password"
@@ -108,7 +187,7 @@ function check(){
 			</div>
 			<div id="buttondiv">
 			<input type="submit" value="가입" class="btn btn-dark"  onclick="check()" />&nbsp;&nbsp;&nbsp;
-			 <input type="reset" value="취소" class="btn btn-dark"/>
+			 <input type="reset" value="취소" class="btn btn-dark" onclick="document.m.reset(); m.username.focus();"/>
 		</div>
 		</form>
 	</div>

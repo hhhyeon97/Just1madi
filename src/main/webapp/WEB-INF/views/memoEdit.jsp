@@ -59,6 +59,12 @@ h2 {
 	
 	margin-bottom: 20px;
 }
+#savebtn, #listbtn{
+	margin-right:10px;
+}
+#listbtn{
+	width: 62px;
+}
 </style>
 </head>
 <body>
@@ -73,7 +79,8 @@ h2 {
     <label>Content</label>
     <textarea name="content">${memo.content}</textarea><br/>
 	</div>
-    <input type="submit" class="btn btn-dark" value="Save" />
+    <input type="submit" id="savebtn" class="btn btn-dark" value="Save" />
+    <input type="button" id="listbtn" class="btn btn-dark" value="List" onclick="location='/memo/list';"/>
 </form>
 </div>
 </body>
