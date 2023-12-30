@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,7 +27,7 @@ public class Memo {
 	@CreationTimestamp
 	private Timestamp createDate; // 메모 작성일
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private MemoUser user; // 메모를 작성한 사용자
 
 }

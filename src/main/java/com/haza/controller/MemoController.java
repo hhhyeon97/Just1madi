@@ -39,6 +39,10 @@ public class MemoController {
 	public String createMemo(@ModelAttribute Memo memo, @AuthenticationPrincipal MemoUser currentUser) {
 		// 현재 로그인한 사용자를 메모의 작성자로 설정
 		memo.setUser(currentUser);
+		  
+		// MemoUser 엔터티를 먼저 저장
+	    userRepository.save(currentUser);
+		
 		// 작성일 설정
 		memo.setCreateDate(new Timestamp(System.currentTimeMillis()));
 		// 메모 저장
@@ -51,11 +55,13 @@ public class MemoController {
 	@GetMapping("/memo/list")
 	public String memoList(@AuthenticationPrincipal MemoUser currentUser, Model model) {
 		
+		/*
 		if (currentUser == null) {
 	        // 로그인하지 않은 상태에서의 처리
 	        // 예를 들어, 로그인 페이지로 리다이렉트하거나 다른 처리를 수행할 수 있습니다.
 	        return "redirect:/";
 	    }
+	    */
 		
 		// 현재 로그인한 사용자의 메모 목록 조회
 		List<Memo> memoList = memoRepository.findByUser(currentUser);
