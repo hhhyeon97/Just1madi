@@ -50,12 +50,22 @@ public class MemoController {
 	// 메모 목록 조회
 	@GetMapping("/memo/list")
 	public String memoList(@AuthenticationPrincipal MemoUser currentUser, Model model) {
+		
+		if (currentUser == null) {
+	        // 로그인하지 않은 상태에서의 처리
+	        // 예를 들어, 로그인 페이지로 리다이렉트하거나 다른 처리를 수행할 수 있습니다.
+	        return "redirect:/";
+	    }
+		
 		// 현재 로그인한 사용자의 메모 목록 조회
 		List<Memo> memoList = memoRepository.findByUser(currentUser);
 
 		// 뷰에 메모 목록 전달
 		model.addAttribute("memoList", memoList);
-
+		
+		String loggedInUsername = currentUser.getUsername();
+		model.addAttribute("loggedInUsername", loggedInUsername);
+		 
 		return "memoList";
 	}
 

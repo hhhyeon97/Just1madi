@@ -2,7 +2,6 @@ package com.haza.controller;
 
 
 import java.io.PrintWriter;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.haza.model.MemoUser;
 import com.haza.repository.UserRepository;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 
@@ -71,7 +71,7 @@ public class IndexController {
 	
 	
 	@PostMapping("/join_ok")
-	public String join_ok(MemoUser user) {
+	public String join_ok(MemoUser user, HttpServletRequest request) {
 		System.out.println("user ============\n"+user);
 		user.setRole("ROLE_USER");
 		
@@ -80,6 +80,8 @@ public class IndexController {
 		user.setPassword(encPassword);
 		
 		userRepository.save(user);
+		
+		request.setAttribute("message", "회원가입을 축하합니다 !");
 		return "redirect:/";
 	}
 	

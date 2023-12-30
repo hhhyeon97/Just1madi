@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +32,8 @@
 }
 
 .glassmorphism-container h2 {
-	color: #343a40;
+	/*color: #343a40;*/
+	color: #a6bfe0;	
 	letter-spacing: 5px;
 	font-family: 'yg-jalnan';
 	margin-bottom : 30px;
@@ -76,6 +78,22 @@
 #buttondiv {
 	margin-top: 50px;
 }
+
+
+#btn1,#btn2{
+	border : 1px solid lightgray;
+	border-radius: 5px;
+	background-color:#fff;
+	padding :5px 10px;
+}
+/*
+#btn1:hover{
+	background-color:#a6bfe0;
+}
+#btn2:hover{
+	background-color:#a6bfe0;
+}
+*/
 </style>
 </head>
 <script>
@@ -89,14 +107,15 @@ function check() {
         m.password.focus();
         return false;
     }
-    else {
-		if ($("#idcheck").text() === '사용 가능한 아이디입니다.') {
-			alert("회원가입에 성공하였습니다!");
+    else if {
+		if ($("#idcheck").text() === '사용 가능한 닉네임입니다.') {
+			/*alert("회원가입에 성공하였습니다!");*/
 			return false;
 		} else {
-			alert("아이디 중복검사를 먼저 진행해주세요.");
+			alert("닉네임 중복검사를 먼저 진행해주세요.");
 			return false;
 		}
+		
 	}
 }
 
@@ -104,7 +123,7 @@ function id_check(){
 	$("#idcheck").hide();
 	$username=$.trim($("#username").val());
 	if($username.length < 4){
-		$newtext='<font color="red" size="3"><b>아이디는 4자 이상이어야 합니다.</b></font>';
+		$newtext='<font color="red" size="3"><b>닉네임은 4자 이상이어야 합니다.</b></font>';
 		$("#idcheck").text('');
 		$("#idcheck").show();
 		$("#idcheck").append($newtext);
@@ -112,7 +131,7 @@ function id_check(){
 		return false;
 	};
 	if($username.length > 12){
-		$newtext='<font color="red" size="3"><b>아이디는12자 이하이어야 합니다.</b></font>';
+		$newtext='<font color="red" size="3"><b>닉네임은 12자 이하이어야 합니다.</b></font>';
 		$("#idcheck").text('');
 		$("#idcheck").show();
 		$("#idcheck").append($newtext);
@@ -120,7 +139,7 @@ function id_check(){
 		return false;
 	};
 	if(!(validate_userid($username))){
-		$newtext='<font color="red" size="3"><b>아이디는 영문소문자,숫자,_조합만 가능합니다.</b></font>';
+		$newtext='<font color="red" size="3"><b>닉네임은 영문소문자,숫자,_조합만 가능합니다.</b></font>';
 		$("#idcheck").text('');
 		$("#idcheck").show();
 		$("#idcheck").append($newtext);
@@ -134,20 +153,20 @@ function id_check(){
         datatype:"int",
         success: function (data) {
       	  if(data==1){//중복 아이디가 있다면
-      		$newtext='<font color="red" size="3"><b>중복 아이디입니다.</b></font>';
+      		$newtext='<font color="red" size="3"><b>중복 닉네임입니다.</b></font>';
       		$("#idcheck").text('');
         	$("#idcheck").show();
         	$("#idcheck").append($newtext);          		
           	$("#username").val('').focus();
-          	 console.log("중복 아이디 입니다!");
+          	 console.log("중복 닉네임 입니다!");
           	return false;
       	  }else{//중복 아이디가 아니면
-      		$newtext='<font color="blue" size="3"><b>사용 가능한 아이디입니다.</b></font>';
+      		$newtext='<font color="blue" size="3"><b>사용 가능한 닉네임입니다.</b></font>';
       		$("#idcheck").text('');
       		$("#idcheck").show();
       		$("#idcheck").append($newtext);
       		$("#password").focus();
-      		console.log("중복 아이디가 아닙니다!");
+      		console.log("중복 닉네임이 아닙니다!");
       	  }  	    	  
         },
     	  error:function(){
@@ -162,7 +181,7 @@ function id_check(){
 //정규표현식
 function validate_userid($username)
 {
-var pattern= new RegExp(/^[a-z0-9_]+$/);//아이디를 영문소문자와 숫자 와 _조합으로 처리
+var pattern= new RegExp(/^[a-z0-9_]+$/);//닉네임을 영문소문자와 숫자 와 _조합으로 처리
 return pattern.test($username);
 };
 
@@ -170,13 +189,22 @@ return pattern.test($username);
 
 </script>
 <body>
+
+
+  <c:if test="${not empty message}">
+        <div class="alert alert-success">
+            <p>${message}</p>
+        </div>
+    </c:if>
+    
+    
 	<!--<span id="logotitle"><a href="/">just1madi</a></span>-->
 	<div class="glassmorphism-container">
 		<form name="m" method="post" action="join_ok">
 			<h2>회 원 가 입</h2>
 			<div class="form-group">
 				<label for="username">닉네임</label> <input type="text" id="username" name="username" required>
-			<input type="button" value="아이디중복체크"
+			<input type="button" value="닉네임중복체크"
 						id="checkbtn" class="btn btn-dark" onclick="id_check();">
 			<br>
 			<span id="idcheck"></span>
@@ -186,8 +214,10 @@ return pattern.test($username);
 					name="password" required>
 			</div>
 			<div id="buttondiv">
-			<input type="submit" value="가입" class="btn btn-dark"  onclick="check()" />&nbsp;&nbsp;&nbsp;
-			 <input type="reset" value="취소" class="btn btn-dark" onclick="document.m.reset(); m.username.focus();"/>
+			<label for="btn1"></label>
+			<input type="submit" value="가입" id="btn1" class="cusbtn"  onclick="check()" />&nbsp;&nbsp;&nbsp;
+			<label for="btn2"></label>
+			 <input type="reset" value="취소" id="btn2" class="cusbtn" onclick="document.m.reset(); m.username.focus();"/>
 		</div>
 		</form>
 	</div>
