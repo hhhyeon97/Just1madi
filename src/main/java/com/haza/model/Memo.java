@@ -4,11 +4,11 @@ import java.sql.Timestamp;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
@@ -27,7 +27,8 @@ public class Memo {
 	@CreationTimestamp
 	private Timestamp createDate; // 메모 작성일
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
+	@JoinColumn(name = "userNo", referencedColumnName = "userNo")
 	private MemoUser user; // 메모를 작성한 사용자
 
 }

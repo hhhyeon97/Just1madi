@@ -16,6 +16,7 @@ import com.haza.model.Memo;
 import com.haza.model.MemoUser;
 import com.haza.repository.MemoRepository;
 import com.haza.repository.UserRepository;
+import com.haza.service.MemoService;
 
 
 @Controller
@@ -24,6 +25,9 @@ public class MemoController {
 	@Autowired
 	private MemoRepository memoRepository;
 
+	@Autowired
+	private MemoService memoService;
+	
 	@Autowired
 	private UserRepository userRepository;
 
@@ -41,14 +45,34 @@ public class MemoController {
 		memo.setUser(currentUser);
 		  
 		// MemoUser 엔터티를 먼저 저장
-	    userRepository.save(currentUser);
+	    //userRepository.save(currentUser);
 		
 		// 작성일 설정
 		memo.setCreateDate(new Timestamp(System.currentTimeMillis()));
 		// 메모 저장
-		memoRepository.save(memo);
+		//memoService.createMemo(memo,currentUser);
+		 memoRepository.save(memo);
 		// 작성이 완료된 후 메모 목록 페이지로 이동
 		return "redirect:/memo/list";
+		
+		
+		
+		//12/30 재시도 
+		  // MemoUser 엔터티의 인스턴스 생성
+	    //MemoUser memoUser = new MemoUser();
+	   // memoUser.setUsername(currentUser.getUsername());
+	   // memoUser.setPassword(currentUser.getPassword());
+	    // MemoUser 엔터티를 먼저 저장
+	   // userRepository.save(memoUser); // 주석을 풀고 사용해보세요.
+
+	    // 메모의 user 필드에 MemoUser 할당
+	   // memo.setUser(memoUser);
+	    // Memo 저장
+	   // memoRepository.save(memo);
+	    // 작성이 완료된 후 메모 목록 페이지로 이동
+	   // return "redirect:/memo/list";
+		
+		
 	}
 
 	// 메모 목록 조회

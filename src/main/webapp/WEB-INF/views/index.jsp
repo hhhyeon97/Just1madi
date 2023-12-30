@@ -71,7 +71,7 @@ h2 {
 <script>
  function login_check(){
 	 if(m.username.value==""){
-		   alert("로그인 아이디를 입력하세요!");
+		   alert("닉네임을 입력하세요!");
 	      	m.username.focus();
 	       return false;
 	 }
