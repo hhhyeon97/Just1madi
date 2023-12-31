@@ -13,7 +13,7 @@
 	content="width=device-width, initial-scale=1.0, user-scalable=no, 
   maximum-scale=1.0, minimum-scale=1.0">
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-<title>just1madi</title>
+<title>memoong</title>
 <style>
 h2 {
 	font-family: 'yg-jalnan';
@@ -86,7 +86,7 @@ h2 {
     
 <div class="glassmorphism-container">
 		<form method="post" name="m" action="login_ok">
-			<h2>welcome just1madi</h2>
+			<h2>welcome memoong</h2>
 			<div class="form-group">
 				<label for="username">닉네임</label> <input type="text" id="username" name="username">
 			</div>

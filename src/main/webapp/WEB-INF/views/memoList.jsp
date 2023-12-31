@@ -14,7 +14,7 @@
 	content="width=device-width, initial-scale=1.0, user-scalable=no, 
   maximum-scale=1.0, minimum-scale=1.0">
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-<title>메모 목록</title>
+<title>메모 리스트</title>
 <style>
 h2 {
 	font-family: 'yg-jalnan';
