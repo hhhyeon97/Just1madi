@@ -118,8 +118,8 @@ public class IndexController {
 	
 	
 	
-	@PostMapping("/join_ok")
-	public String join_ok(MemoUser user, HttpServletRequest request) {
+	@PostMapping("/join")
+	public String join(MemoUser user, HttpServletRequest request) {
 		System.out.println("user ============\n"+user);
 		user.setRole("ROLE_USER");
 		
@@ -127,9 +127,9 @@ public class IndexController {
 		String encPassword = bCryptPasswordEncoder.encode(rawPassword);
 		user.setPassword(encPassword);
 		
+		request.setAttribute("message", "회원가입을 축하합니다 !");
 		userRepository.save(user);
 		
-		request.setAttribute("message", "회원가입을 축하합니다 !");
 		return "redirect:/";
 	}
 	

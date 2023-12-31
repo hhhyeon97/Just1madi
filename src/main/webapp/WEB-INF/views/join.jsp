@@ -200,7 +200,7 @@ return pattern.test($username);
     
 	<!--<span id="logotitle"><a href="/">just1madi</a></span>-->
 	<div class="glassmorphism-container">
-		<form name="m" method="post" action="join_ok">
+		<form name="m" method="post" action="join">
 			<h2>회 원 가 입</h2>
 			<div class="form-group">
 				<label for="username">닉네임</label> <input type="text" id="username" name="username" required>

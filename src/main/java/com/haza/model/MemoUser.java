@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +20,8 @@ public class MemoUser {
 	@Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
 	private int userNo; // 회원번호
+	
+	@Column(unique = true)
 	private String username;	//닉네임
 
 	private String password;	//비밀번호

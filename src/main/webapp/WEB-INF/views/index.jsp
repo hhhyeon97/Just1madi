@@ -90,20 +90,24 @@ h2 {
  }
  
  
-//알림 메시지를 띄우는 함수
- function showAlert(message) {
-     alert(message);
- }
-
- // 서버에서 전달한 errorMessage가 비어있지 않다면 알림창 띄우기
- $(document).ready(function() {
-     var errorMessage = "${errorMessage}";
-
-     if (errorMessage) {
-         showAlert(errorMessage);
-     }
- });
 </script>
+
+<script>
+        // 알림창을 띄우는 함수
+        function showAlert(message) {
+            alert(message);
+        }
+
+        // 페이지 로드 시, message가 있으면 알림창을 띄움
+        $(document).ready(function() {
+            var message = "${message}";
+
+            if (message) {
+                showAlert(message);
+            }
+        });
+    </script>
+
 <div class="glassmorphism-container">
 		<form method="post" name="m" action="/login">
 			<h2>welcome memoong</h2>

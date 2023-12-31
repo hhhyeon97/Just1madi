@@ -33,7 +33,7 @@ h2 {
 }
 
 .glassmorphism-container h2 {
-	color: #343a40;
+	color: #a6bfe0;	
 }
 
 .form-group {
