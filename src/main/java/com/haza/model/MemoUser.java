@@ -26,4 +26,16 @@ public class MemoUser {
 
 	@CreationTimestamp
 	private Timestamp createDate;	//가입날짜
+	
+	
+	  // 추가: MemoUser에서 User 정보를 반환하는 메서드
+    public MemoUser getUser() {
+    	MemoUser user = new MemoUser();
+        user.setUserNo(userNo);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setRole(role);
+        user.setCreateDate(createDate);
+        return user;
+    }
 }

@@ -18,6 +18,8 @@ import com.haza.repository.MemoRepository;
 import com.haza.repository.UserRepository;
 import com.haza.service.MemoService;
 
+import jakarta.servlet.http.HttpSession;
+
 
 @Controller
 public class MemoController {
@@ -77,26 +79,24 @@ public class MemoController {
 
 	// 메모 목록 조회
 	@GetMapping("/memo/list")
-	public String memoList(@AuthenticationPrincipal MemoUser currentUser, Model model) {
-		
-		/*
-		if (currentUser == null) {
-	        // 로그인하지 않은 상태에서의 처리
-	        // 예를 들어, 로그인 페이지로 리다이렉트하거나 다른 처리를 수행할 수 있습니다.
-	        return "redirect:/";
-	    }
-	    */
-		
-		// 현재 로그인한 사용자의 메모 목록 조회
-		List<Memo> memoList = memoRepository.findByUser(currentUser);
+	public String memoList(@AuthenticationPrincipal MemoUser currentUser, HttpSession session, Model model) {
+	    // 현재 로그인한 사용자의 메모 목록 조회
+	    List<Memo> memoList = memoRepository.findByUser(currentUser);
 
-		// 뷰에 메모 목록 전달
-		model.addAttribute("memoList", memoList);
-		
-		String loggedInUsername = currentUser.getUsername();
-		model.addAttribute("loggedInUsername", loggedInUsername);
-		 
-		return "memoList";
+	    //시도 1
+	    // 추가: 현재 로그인한 사용자의 이름을 뷰에 전달
+	    //String loggedInUsername = currentUser.getUsername();
+	   //addAttribute("loggedInUsername", loggedInUsername);
+
+	    //시도 2
+	 // 세션에 사용자 이름 저장
+	  //  String loggedInUsername = currentUser.getUsername();
+	   // session.setAttribute("loggedInUsername", loggedInUsername);
+	    
+	    // 뷰에 메모 목록 전달
+	    model.addAttribute("memoList", memoList);
+
+	    return "memoList";
 	}
 
 	// 메모 수정 폼으로 이동
