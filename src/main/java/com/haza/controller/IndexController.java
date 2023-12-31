@@ -4,7 +4,9 @@ package com.haza.controller;
 import java.io.PrintWriter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,11 +45,24 @@ public class IndexController {
 		return "admin";
 	}
 
+	/*
 	@PostMapping("/login_ok")
 	public String login_ok() {
 		return "redirect:/memo";
-	}	
+	}
+	*/	
 
+	@GetMapping("/custom-logout")
+    public String customLogout(HttpServletRequest request, HttpServletResponse response,
+            Authentication authentication) {
+        if (authentication != null) {
+            new SecurityContextLogoutHandler().logout(request, response, authentication);
+            System.out.println("로그아웃...");
+        }
+        
+        return "redirect:/"; // 로그아웃 후 리다이렉트할 페이지
+    }
+	
 	@GetMapping("/join")
 	public String join(){
 		return "join";

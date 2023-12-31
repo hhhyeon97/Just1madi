@@ -80,12 +80,17 @@ h2 {
 	      	m.password.focus();
 	       return false;
 	 }
+	 else {
+		alert("어서오세요 ⌯'▾'⌯")	;
+		document.m.submit();
+		return true;
+	 }
  }
 </script>
 
     
 <div class="glassmorphism-container">
-		<form method="post" name="m" action="login_ok">
+		<form method="post" name="m" action="/login">
 			<h2>welcome memoong</h2>
 			<div class="form-group">
 				<label for="username">닉네임</label> <input type="text" id="username" name="username">

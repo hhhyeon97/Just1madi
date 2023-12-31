@@ -102,7 +102,8 @@ td {
 		<h2>Memo List</h2>
 		<!--<span id="username">${loggedInUsername}</span>-->
 		<!--<span id="username">${sessionScope.loggedInUsername}</span>-->
-		<span id="logoutbtn"><button>logout</button></span>
+		<a href="<c:url value='/logout' />">로그아웃테스트1</a>
+		<a href="/custom-logout">로그아웃테스트2</a>
 		<!-- 메모가 없는 경우 -->
 		<!--<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAFRJREFUSEtjZKAxYKSx+QzEWvAfh0MI6ieoAGrwqAUEo3o0iMBBhCsYCIYfviSMnExHLUAPKXDoDK8gwpdaRjMawbw0GkQDH0QEXYBLAbF1MtkWAAC++BQZuFCLQQAAAABJRU5ErkJggg=="/>-->
 			<table>
