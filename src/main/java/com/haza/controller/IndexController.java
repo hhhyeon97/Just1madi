@@ -63,6 +63,39 @@ public class IndexController {
         return "redirect:/"; // 로그아웃 후 리다이렉트할 페이지
     }
 	
+	
+	
+	@PostMapping("/loginCheck")
+	public String login(MemoUser user, HttpServletRequest request) {
+	    // 입력받은 닉네임으로 사용자 정보를 조회
+	    MemoUser dbUser = userRepository.findByUsername(user.getUsername());
+
+	    if (dbUser == null) {
+	        // 닉네임이 DB에 없는 경우
+	        request.setAttribute("errorMessage", "존재하지 않은 회원입니다.");
+	        return "index"; // 로그인 페이지로 리다이렉트 또는 원하는 페이지로 이동
+	    } else {
+	        // 닉네임이 DB에 있는 경우, 비밀번호 일치 여부 확인
+	        if (bCryptPasswordEncoder.matches(user.getPassword(), dbUser.getPassword())) {
+	            // 비밀번호 일치
+	            // 로그인 성공 처리
+	            // 여기서는 간단하게 리다이렉트하는데, 실제로는 로그인 성공 후의 동작을 정의해야 합니다.
+	            return "redirect:/memo/list"; // 로그인 성공 시 이동할 페이지
+	        } else {
+	            // 비밀번호 불일치
+	            request.setAttribute("errorMessage", "비밀번호가 일치하지 않습니다.");
+	            return "index"; // 로그인 페이지로 리다이렉트 또는 원하는 페이지로 이동
+	        }
+	    }
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	@GetMapping("/join")
 	public String join(){
 		return "join";

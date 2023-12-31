@@ -144,5 +144,11 @@ public class MemoController {
 		return "redirect:/memo/list";
 	}
 
+	
+	// 메모유저 정보 수정 
+	@GetMapping("/memo/myProfile")
+	public String myProfile() {
+		return "myProfile";
+	}
 
 }
