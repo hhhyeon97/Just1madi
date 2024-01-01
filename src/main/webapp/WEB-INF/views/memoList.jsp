@@ -122,12 +122,21 @@ td {
 	margin-bottom: 10px;
 	text-decoration: none;
 	color: #333; /* 메뉴 텍스트 색상 */
-}
+	
+	 transition: color 0.4s; /* 색상 변경 시 부드러운 전환 효과 */
+    padding: 8px; /* 링크의 내부 여백 설정 */
 
+    /* 배경색과 마우스를 올렸을 때의 스타일 변경 */
+    &:hover {
+        color: #fff; /* 마우스를 올렸을 때의 텍스트 색상 */
+        background-color: #a6bfe0; /* 마우스를 올렸을 때의 배경색 */
+    }
+}
+/*
 #menuContainer a:hover {
 	background-color: lightgray;
 }
-
+*/
 #menuButton {
 	cursor: pointer;
 }

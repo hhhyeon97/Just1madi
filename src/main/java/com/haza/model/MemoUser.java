@@ -21,8 +21,9 @@ public class MemoUser {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
 	private int userNo; // 회원번호
 	
-	@Column(unique = true)
-	private String username;	//닉네임
+	@Column(unique = true, nullable = false)
+	private String username; // 닉네임
+
 
 	private String password;	//비밀번호
 	private String role;		//ROLE_USER, ROLE_ADMIN
