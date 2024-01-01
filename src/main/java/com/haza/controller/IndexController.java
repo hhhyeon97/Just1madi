@@ -1,7 +1,8 @@
 package com.haza.controller;
 
 
-import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -10,11 +11,12 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.haza.model.MemoUser;
 import com.haza.repository.UserRepository;
+import com.haza.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -26,6 +28,8 @@ public class IndexController {
 	@Autowired
 	private UserRepository userRepository;
 	
+	@Autowired
+	private UserService userService;
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -52,6 +56,22 @@ public class IndexController {
 	}
 	*/	
 
+	/*
+	 @PostMapping("/checkUsername")
+	    @ResponseBody
+	    public ResponseEntity<String> isUsernameExists(@RequestParam("username") String username) {
+	        // 중복 체크 로직을 서비스에서 수행
+	        boolean isExists = userService.isUsernameExists(username);
+
+	        if (isExists) {
+	            return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already exists");
+	        } else {
+	            return ResponseEntity.ok("Username is available");
+	        }
+	    }
+	 */
+	 
+	
 	@GetMapping("/custom-logout")
     public String customLogout(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) {
@@ -90,19 +110,13 @@ public class IndexController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
 	@GetMapping("/join")
 	public String join(){
 		return "join";
 	}
 	
-	
-	//닉네임 중복검색
+	/*
+	//닉네임 중복검색 시도 01 
 	@PostMapping("/idCheck")
 	public ModelAndView idCheck(String username,HttpServletResponse response)
 			throws Exception{
@@ -115,9 +129,75 @@ public class IndexController {
 		out.println(re);
 		return null;
 	}
+	*/
+	
+	// 시도 02 
+	@PostMapping("/idCheck")
+	@ResponseBody
+	public Map<String, Object> idCheck(@RequestParam String username) {
+	    Map<String, Object> result = new HashMap<>();
+	    MemoUser dbUser = userRepository.findByUsername(username);
+
+	    if (dbUser != null) {
+	        result.put("result", "duplicate");
+	    } else {
+	        result.put("result", "available");
+	    }
+
+	    return result;
+	}
+	
+	/*
+	@PostMapping("/join")
+	public String join(MemoUser user, HttpServletRequest request) {
+	    // 중복 닉네임 체크
+	    MemoUser dbUser = userRepository.findByUsername(user.getUsername());
+
+	    if (dbUser != null) {
+	        // 중복 닉네임인 경우
+	        request.setAttribute("message", "중복된 닉네임입니다.");
+	        return "redirect:/join"; // 중복 닉네임이면 회원가입 페이지로 다시 리다이렉트
+	    }
+	    // 중복 닉네임이 아닌 경우
+	    user.setRole("ROLE_USER");
+	    String rawPassword = user.getPassword();
+	    String encPassword = bCryptPasswordEncoder.encode(rawPassword);
+	    user.setPassword(encPassword);
+
+	    request.setAttribute("message", "회원가입을 축하합니다 !");
+	    userRepository.save(user);
+
+	    return "redirect:/";
+	}
+*/
 	
 	
+	@PostMapping("/join")
+	public String join(MemoUser user, HttpServletRequest request) {
+	    // 중복 닉네임 체크
+	    MemoUser dbUser = userRepository.findByUsername(user.getUsername());
+
+	    if (dbUser != null) {
+	        // 중복 닉네임인 경우
+	        request.setAttribute("message", "중복된 닉네임입니다.");
+	        return "redirect:/join"; // 중복 닉네임이면 회원가입 페이지로 다시 리다이렉트
+	    }
+
+	    // 중복 닉네임이 아닌 경우
+	    user.setRole("ROLE_USER");
+	    String rawPassword = user.getPassword();
+	    String encPassword = bCryptPasswordEncoder.encode(rawPassword);
+	    user.setPassword(encPassword);
+
+	    //request.setAttribute("message", "회원가입을 축하합니다 !");
+	    userRepository.save(user);
+
+	    return "redirect:/";
+	}
+
 	
+	
+	/*
 	@PostMapping("/join")
 	public String join(MemoUser user, HttpServletRequest request) {
 		System.out.println("user ============\n"+user);
@@ -132,6 +212,6 @@ public class IndexController {
 		
 		return "redirect:/";
 	}
-	
+	*/
 	
 }

@@ -77,23 +77,17 @@
 }
 #buttondiv {
 	margin-top: 50px;
+	text-align: center
 }
-
 
 #btn1,#btn2{
 	border : 1px solid lightgray;
 	border-radius: 5px;
 	background-color:#fff;
 	padding :5px 10px;
+    display :inline-block;
+	
 }
-/*
-#btn1:hover{
-	background-color:#a6bfe0;
-}
-#btn2:hover{
-	background-color:#a6bfe0;
-}
-*/
 </style>
 </head>
 <script>
@@ -106,99 +100,65 @@ function check() {
         alert("비밀번호를 입력하세요!");
         m.password.focus();
         return false;
+    } else if ($("#idcheck").text() !== '사용 가능한 닉네임입니다.') {
+        alert("닉네임 중복검사를 먼저 진행해주세요.");
+        return false;
+    } else {
+        var isDuplicate = $("#idcheck").data("isDuplicate");
+        if (isDuplicate) {
+            alert("중복된 닉네임입니다. 다른 닉네임을 입력해주세요.");
+            return false;
+        } else {
+            alert("회원가입에 성공하였습니다!");
+            document.m.submit();
+            return true;
+        }
     }
-    else if {
-		if ($("#idcheck").text() === '사용 가능한 닉네임입니다.') {
-			/*alert("회원가입에 성공하였습니다!");*/
-			return false;
-		} else {
-			alert("닉네임 중복검사를 먼저 진행해주세요.");
-			return false;
-		}
-		
+}
+
+function id_check() {
+    $("#idcheck").hide();
+    var username = $.trim($("#username").val());
+    if (username.length < 4) {
+        $("#idcheck").text("닉네임은 4자 이상이어야 합니다.").css("color", "red").show();
+        $("#username").val('').focus();
+        $("#idcheck").data("isDuplicate", true);
+        return false;
+    } else if (username.length > 12) {
+        $("#idcheck").text("닉네임은 12자 이하이어야 합니다.").css("color", "red").show();
+        $("#username").val('').focus();
+        $("#idcheck").data("isDuplicate", true);
+        return false;
+    } else if (!(validate_userid(username))) {
+        $("#idcheck").text("닉네임은 영문 소문자, 숫자, 한글, 밑줄(_) 조합만 가능합니다.").css("color", "red").show();
+        $("#username").val('').focus();
+        $("#idcheck").data("isDuplicate", true);
+        return false;
+    } else {
+        $.ajax({
+            type: "POST",
+            url: "/idCheck",
+            data: {"username": username},
+            success: function(data) {
+                if (data.result === "duplicate") {
+                    $("#idcheck").text("중복된 닉네임입니다.").css("color", "red").data("isDuplicate", true);
+                } else {
+                    $("#idcheck").text("사용 가능한 닉네임입니다.").css("color", "blue").data("isDuplicate", false);
+                }
+            },
+            error: function () {
+                alert("서버 오류가 발생했습니다.");
+            }
+        });
+    }
+}
+
+function validate_userid(username) {
+	  var pattern = /^[a-z0-9_\uAC00-\uD7A3]+$/; // 영문 소문자, 숫자, 한글, 밑줄(_) 포함한 패턴
+	  return pattern.test(username);
 	}
-}
-
-function id_check(){
-	$("#idcheck").hide();
-	$username=$.trim($("#username").val());
-	if($username.length < 4){
-		$newtext='<font color="red" size="3"><b>닉네임은 4자 이상이어야 합니다.</b></font>';
-		$("#idcheck").text('');
-		$("#idcheck").show();
-		$("#idcheck").append($newtext);
-		$("#username").val('').focus();
-		return false;
-	};
-	if($username.length > 12){
-		$newtext='<font color="red" size="3"><b>닉네임은 12자 이하이어야 합니다.</b></font>';
-		$("#idcheck").text('');
-		$("#idcheck").show();
-		$("#idcheck").append($newtext);
-		$("#username").val('').focus();
-		return false;
-	};
-	if(!(validate_userid($username))){
-		$newtext='<font color="red" size="3"><b>닉네임은 영문소문자,숫자,_조합만 가능합니다.</b></font>';
-		$("#idcheck").text('');
-		$("#idcheck").show();
-		$("#idcheck").append($newtext);
-		$("#username").val('').focus();
-		return false;
-	};
-    $.ajax({
-        type:"POST",   
-        url:"idCheck", 
-        data: {"username":$username},
-        datatype:"int",
-        success: function (data) {
-      	  if(data==1){//중복 아이디가 있다면
-      		$newtext='<font color="red" size="3"><b>중복 닉네임입니다.</b></font>';
-      		$("#idcheck").text('');
-        	$("#idcheck").show();
-        	$("#idcheck").append($newtext);          		
-          	$("#username").val('').focus();
-          	 console.log("중복 닉네임 입니다!");
-          	return false;
-      	  }else{//중복 아이디가 아니면
-      		$newtext='<font color="blue" size="3"><b>사용 가능한 닉네임입니다.</b></font>';
-      		$("#idcheck").text('');
-      		$("#idcheck").show();
-      		$("#idcheck").append($newtext);
-      		$("#password").focus();
-      		console.log("중복 닉네임이 아닙니다!");
-      	  }  	    	  
-        },
-    	  error:function(){
-    		  alert("data error");
-    	  }
-      });//$.ajax
-}
-
-
-
-
-//정규표현식
-function validate_userid($username)
-{
-var pattern= new RegExp(/^[a-z0-9_]+$/);//닉네임을 영문소문자와 숫자 와 _조합으로 처리
-return pattern.test($username);
-};
-
-
-
 </script>
 <body>
-
-
-  <c:if test="${not empty message}">
-        <div class="alert alert-success">
-            <p>${message}</p>
-        </div>
-    </c:if>
-    
-    
-	<!--<span id="logotitle"><a href="/">just1madi</a></span>-->
 	<div class="glassmorphism-container">
 		<form name="m" method="post" action="join">
 			<h2>회 원 가 입</h2>
