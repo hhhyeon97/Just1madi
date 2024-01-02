@@ -26,7 +26,7 @@ public class SecurityConfig {
 	        		.and()
 	        		.formLogin()
 	        		.loginPage("/")
-	        		.loginProcessingUrl("/login")
+	        		.loginProcessingUrl("/loginCheck")
 	        		.defaultSuccessUrl("/memo/list");
 	        		return http.build();
 	    }

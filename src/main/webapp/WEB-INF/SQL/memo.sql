@@ -9,3 +9,8 @@ delete from Memo;
 drop table MemoUser;
 commit;
 
+
+-- 1/2 admin 롤 
+update MemoUser set role ='ROLE_ADMIN' where username='admin';
+commit;
+

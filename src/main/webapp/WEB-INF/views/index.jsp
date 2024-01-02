@@ -82,34 +82,14 @@ h2 {
 	      	m.password.focus();
 	       return false;
 	 }
-	 else {
-		alert("어서오세요 ⌯'▾'⌯")	;
-		document.m.submit();
-		return true;
-	 }
- }
- 
- 
+}
 </script>
-
-<script>
-        // 알림창을 띄우는 함수
-        function showAlert(message) {
-            alert(message);
-        }
-
-        // 페이지 로드 시, message가 있으면 알림창을 띄움
-        $(document).ready(function() {
-            var message = "${message}";
-
-            if (message) {
-                showAlert(message);
-            }
-        });
-    </script>
-
 <div class="glassmorphism-container">
-		<form method="post" name="m" action="/login">
+		<form method="post" name="m" action="/loginCheck">
+		<!-- 에러 메시지 표시 -->
+<c:if test="${not empty errorMessage}">
+    <p>${errorMessage}</p>
+</c:if>
 			<h2>welcome memoong</h2>
 			<div class="form-group">
 				<label for="username">닉네임</label> <input type="text" id="username" name="username" required>
@@ -118,14 +98,12 @@ h2 {
 				<label for="password">비밀번호</label> <input type="password" id="password" name="password" required>
 			</div>
 		<div class="form-group">
-			<button type="submit" class="btn btn-dark" onclick="showAlert()">로그인</button>
+			<button type="submit" class="btn btn-dark" onclick="login_check()">로그인</button>
 			&nbsp;&nbsp;&nbsp;
 			<button type="button" class="btn btn-dark"
 				onclick="location='/join';">회원가입</button>
 		</div>
 		</form>
 </div>
-
-
 </body>
 </html>
