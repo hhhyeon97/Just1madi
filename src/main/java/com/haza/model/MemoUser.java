@@ -6,9 +6,9 @@ import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -38,13 +38,23 @@ public class MemoUser {
 	
 	
 	 // Memo 엔터티와의 단방향 연관관계 설정
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Memo> memos = new ArrayList<>();
 	
 	
 	
+	 // 추가: toString 메서드 오버라이드
+    @Override
+    public String toString() {
+        return "MemoUser{" +
+                "userNo=" + userNo +
+                ", username='" + username + '\'' +
+                ", role='" + role + '\'' +
+                ", createDate=" + createDate +
+                '}';
+    }
 	
-	
+    /*
 	  // 추가: MemoUser에서 User 정보를 반환하는 메서드
     public MemoUser getUser() {
     	MemoUser user = new MemoUser();
@@ -55,4 +65,5 @@ public class MemoUser {
         user.setCreateDate(createDate);
         return user;
     }
+    */
 }

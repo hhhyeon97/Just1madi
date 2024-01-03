@@ -12,10 +12,12 @@ public interface MemoRepository extends JpaRepository<Memo, Integer> {
 
 	List<Memo> findByUser(MemoUser currentUser);
 
-	List<Memo> findByUserNo(int userNo);
 
-	List<Memo> findByUser(PrincipalDetails currentUser);
+	//List<Memo> findByUser(PrincipalDetails currentUser);
 
-	List<Memo> findByUser(String currentUserId);
+	//List<Memo> findByUser(String currentUserId);
+	
+	//List<Memo> findByUserNo(int userNo);
 
+	List<Memo> findByUser_UserNo(int userNo);
 }

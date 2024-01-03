@@ -22,7 +22,6 @@ public class PrincipalDetailsService implements UserDetailsService{
 		System.out.println("username : "+username);
 		System.out.println("userEntity : "+userEntity);
 		if(userEntity != null) {
-			//userEntity.getMemo();
 			return new PrincipalDetails(userEntity); 
 		}
 		return null;

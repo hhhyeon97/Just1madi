@@ -19,28 +19,12 @@ public class SecurityConfig {
 	public BCryptPasswordEncoder encodePwd() {
 		return new BCryptPasswordEncoder();
 	}
-	
-	 @Bean
-	    public CustomAuthenticationFailureHandler customAuthenticationFailureHandler() {
-	        return new CustomAuthenticationFailureHandler();
-	    }
-
-	/* 
-	 @Bean
-	    public CustomAuthenticationFilter customAuthenticationFilter() throws Exception {
-	        CustomAuthenticationFilter filter = new CustomAuthenticationFilter(authenticationManagerBean());
-	        filter.setAuthenticationSuccessHandler(new CustomAuthenticationSuccessHandler());
-	        filter.setAuthenticationFailureHandler(new CustomAuthenticationFailureHandler());
-	        return filter;
-	    }
-*/
 	    
 	 @Bean
 	    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 	        http.csrf().disable();
-	       // http.addFilterBefore(customAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 	        http.authorizeHttpRequests()
-	                .requestMatchers("/memo/**").authenticated() 
+	        		.requestMatchers("/memo/**").authenticated()
 	                .requestMatchers("/admin/**").hasRole("ADMIN")
 	                .anyRequest().permitAll()
 	        		.and()
@@ -48,7 +32,6 @@ public class SecurityConfig {
 	        		.loginPage("/")
 	        		.loginProcessingUrl("/loginCheck")
 	        		.defaultSuccessUrl("/memo/list")
-	        		.failureHandler(customAuthenticationFailureHandler()) // 실패 핸들러 등록
 	                .and()
                     .logout()
                     .logoutUrl("/logout")
@@ -58,10 +41,5 @@ public class SecurityConfig {
 	        return http.build();
 	    }
 
-	//private Filter customAuthenticationFilter() {
-		// TODO Auto-generated method stub
-		//return null;
-	//}
-	 
 	
 }

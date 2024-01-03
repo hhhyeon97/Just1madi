@@ -25,36 +25,26 @@ public class MemoController {
 
 	@Autowired
 	private MemoRepository memoRepository;
-
+	
 	@Autowired
 	private MemoService memoService;
 	
 	@Autowired
 	private UserRepository userRepository;
 
-	// 메모 작성폼 
 	@GetMapping("/memo/create")
-	public String createMemoForm(Model model) {
-		model.addAttribute("memo", new Memo());
-		return "memoForm";
+	public String createMemoForm(@AuthenticationPrincipal MemoUser currentUser, Model model) {
+		System.out.println("로그인한 유저 : "+currentUser);
+	    model.addAttribute("currentUser", currentUser);
+	    model.addAttribute("memo", new Memo());
+	    return "memoForm";
 	}
+
 
 	// 메모 작성 처리
 	@PostMapping("/memo/create_ok")
 	public String createMemo(@ModelAttribute Memo memo, @AuthenticationPrincipal MemoUser currentUser) {
-		// 현재 로그인한 사용자를 메모의 작성자로 설정
-		//memo.setUser(currentUser);
-		// MemoUser 엔터티를 먼저 저장
-	    //userRepository.save(currentUser);
-		// 작성일 설정
-		//memo.setCreateDate(new Timestamp(System.currentTimeMillis()));
-		// 메모 저장
-		//memoService.createMemo(memo,currentUser);
-		// memoRepository.save(memo);
-		// 작성이 완료된 후 메모 목록 페이지로 이동
-		//return "redirect:/memo/list";
-		//memo.setUser(currentUser.getUserNo());
-		 memo.setUser(currentUser.getUser()); // 메모에 사용자 정보를 설정
+		// memo.setUser(currentUser.getUser()); // 메모에 사용자 정보를 설정
 		 memo.setCreateDate(new Timestamp(System.currentTimeMillis()));
 		    //memoRepository.save(memo);
 		 	memoService.saveMemo(memo);
@@ -64,19 +54,19 @@ public class MemoController {
 	
 	@GetMapping("/memo/list")
 	public String memoList(@AuthenticationPrincipal PrincipalDetails currentUser, Model model) {
-	    // 현재 로그인한 사용자의 ID를 가져옴
-	   // int currentUserId = currentUser.getUserNo();
-		String currentUserId = currentUser.getUsername();
-	    // 현재 로그인한 사용자의 메모 목록 조회
-	    //List<Memo> memoList = memoRepository.findByUserNo(userNo);
+
+	 // 현재 로그인한 사용자의 회원번호를 가져옴
+	    int currentUserNo = currentUser.getUser().getUserNo();
 	    
-		List<Memo> memoList = memoRepository.findByUser(currentUserId);
-		
+	    // 현재 로그인한 사용자의 메모 목록 조회
+	    List<Memo> memoList = memoRepository.findByUser_UserNo(currentUserNo);
+
 	    // 뷰에 메모 목록 전달
 	    model.addAttribute("memoList", memoList);
 
 	    return "memoList";
 	}
+
 
 	/*
 	
