@@ -15,6 +15,7 @@ public class MemoService {
     @Autowired
     private MemoRepository memoRepository;
 
+    /*
     @Transactional
     public void createMemo(Memo memo, MemoUser currentUser) {
         // MemoUser 엔터티의 인스턴스 생성 및 저장
@@ -28,4 +29,10 @@ public class MemoService {
         // Memo 저장
         memoRepository.save(memo);
     }
+    */
+    
+    @Transactional
+	public void saveMemo(Memo memo) {
+    	   memoRepository.save(memo);
+	}
 }

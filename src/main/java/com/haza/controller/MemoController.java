@@ -1,7 +1,6 @@
 package com.haza.controller;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +12,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.haza.config.auth.PrincipalDetails;
 import com.haza.model.Memo;
 import com.haza.model.MemoUser;
 import com.haza.repository.MemoRepository;
 import com.haza.repository.UserRepository;
 import com.haza.service.MemoService;
-
-import jakarta.servlet.http.HttpSession;
 
 
 @Controller
@@ -45,45 +43,49 @@ public class MemoController {
 	@PostMapping("/memo/create_ok")
 	public String createMemo(@ModelAttribute Memo memo, @AuthenticationPrincipal MemoUser currentUser) {
 		// 현재 로그인한 사용자를 메모의 작성자로 설정
-		memo.setUser(currentUser);
-		  
+		//memo.setUser(currentUser);
 		// MemoUser 엔터티를 먼저 저장
 	    //userRepository.save(currentUser);
-		
 		// 작성일 설정
-		memo.setCreateDate(new Timestamp(System.currentTimeMillis()));
+		//memo.setCreateDate(new Timestamp(System.currentTimeMillis()));
 		// 메모 저장
 		//memoService.createMemo(memo,currentUser);
-		 memoRepository.save(memo);
+		// memoRepository.save(memo);
 		// 작성이 완료된 후 메모 목록 페이지로 이동
-		return "redirect:/memo/list";
-		
-		
-		
-		//12/30 재시도 
-		  // MemoUser 엔터티의 인스턴스 생성
-	    //MemoUser memoUser = new MemoUser();
-	   // memoUser.setUsername(currentUser.getUsername());
-	   // memoUser.setPassword(currentUser.getPassword());
-	    // MemoUser 엔터티를 먼저 저장
-	   // userRepository.save(memoUser); // 주석을 풀고 사용해보세요.
-
-	    // 메모의 user 필드에 MemoUser 할당
-	   // memo.setUser(memoUser);
-	    // Memo 저장
-	   // memoRepository.save(memo);
-	    // 작성이 완료된 후 메모 목록 페이지로 이동
-	   // return "redirect:/memo/list";
-		
+		//return "redirect:/memo/list";
+		//memo.setUser(currentUser.getUserNo());
+		 memo.setUser(currentUser.getUser()); // 메모에 사용자 정보를 설정
+		 memo.setCreateDate(new Timestamp(System.currentTimeMillis()));
+		    //memoRepository.save(memo);
+		 	memoService.saveMemo(memo);
+		 return "redirect:/memo/list";
 		
 	}
+	
+	@GetMapping("/memo/list")
+	public String memoList(@AuthenticationPrincipal PrincipalDetails currentUser, Model model) {
+	    // 현재 로그인한 사용자의 ID를 가져옴
+	   // int currentUserId = currentUser.getUserNo();
+		String currentUserId = currentUser.getUsername();
+	    // 현재 로그인한 사용자의 메모 목록 조회
+	    //List<Memo> memoList = memoRepository.findByUserNo(userNo);
+	    
+		List<Memo> memoList = memoRepository.findByUser(currentUserId);
+		
+	    // 뷰에 메모 목록 전달
+	    model.addAttribute("memoList", memoList);
 
+	    return "memoList";
+	}
+
+	/*
+	
 	// 메모 목록 조회
 	@GetMapping("/memo/list")
 	public String memoList(@AuthenticationPrincipal MemoUser currentUser, HttpSession session, Model model) {
 	    // 현재 로그인한 사용자의 메모 목록 조회
 	    List<Memo> memoList = memoRepository.findByUser(currentUser);
-	    System.out.println("=============== currentUser : "+currentUser);
+	   // System.out.println("=============== currentUser : "+currentUser.getUsername());
 	    //시도 1
 	    // 추가: 현재 로그인한 사용자의 이름을 뷰에 전달
 	    //String loggedInUsername = currentUser.getUsername();
@@ -124,6 +126,8 @@ public class MemoController {
 
 		return "memoEdit";
 	}
+	
+	*/
 
 	// 메모 수정 처리
 	@PostMapping("/memo/edit/{memoId}")

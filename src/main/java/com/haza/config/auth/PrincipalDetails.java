@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.haza.model.MemoUser;
@@ -17,7 +18,7 @@ public class PrincipalDetails implements UserDetails{
 		this.user = user;
 	}
 	
-	
+	/*
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Collection<GrantedAuthority> collect = new ArrayList<>();
@@ -29,6 +30,17 @@ public class PrincipalDetails implements UserDetails{
 		});
 		return collect;
 	}
+	*/
+	
+	// 1/3 테스트중
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+	    Collection<GrantedAuthority> authorities = new ArrayList<>();
+	    authorities.add(new SimpleGrantedAuthority(user.getRole()));
+	    return authorities;
+	}
+	
+	
 	
 	@Override
 	public String getPassword() {
@@ -59,6 +71,8 @@ public class PrincipalDetails implements UserDetails{
 	public boolean isEnabled() {
 		return true;
 	}
+
+
 	
 	
 }
