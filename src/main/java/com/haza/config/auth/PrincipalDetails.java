@@ -73,7 +73,6 @@ public class PrincipalDetails implements UserDetails{
 	}
 
 	
-	
 	//1/4테스트
 	 public MemoUser getUser() {
 	        return user;

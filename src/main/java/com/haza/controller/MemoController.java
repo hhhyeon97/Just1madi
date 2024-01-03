@@ -4,7 +4,10 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +35,7 @@ public class MemoController {
 	@Autowired
 	private UserRepository userRepository;
 
+	/*
 	@GetMapping("/memo/create")
 	public String createMemoForm(@AuthenticationPrincipal MemoUser currentUser, Model model) {
 		System.out.println("로그인한 유저 : "+currentUser);
@@ -39,17 +43,38 @@ public class MemoController {
 	    model.addAttribute("memo", new Memo());
 	    return "memoForm";
 	}
+*/
+	
+	@GetMapping("/memo/create")
+	public String createMemoForm(Model model) {
+	    // 현재 인증된 사용자 정보 가져오기
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
+	    // 특정 AuthenticationProvider를 사용한 경우
+	    if (authentication != null && authentication instanceof UsernamePasswordAuthenticationToken) {
+	        // UsernamePasswordAuthenticationToken을 통해 사용자 정보를 가져옴
+	        UsernamePasswordAuthenticationToken token = (UsernamePasswordAuthenticationToken) authentication;
+	        if (token.getPrincipal() instanceof MemoUser) {
+	            MemoUser currentUser = (MemoUser) token.getPrincipal();
+	            System.out.println("로그인한 유저 : " + currentUser);
+	            model.addAttribute("currentUser", currentUser);
+	            model.addAttribute("memo", new Memo());
+	        }
+	    }
+
+	    return "memoForm";
+	}
+
+	
 
 	// 메모 작성 처리
 	@PostMapping("/memo/create_ok")
 	public String createMemo(@ModelAttribute Memo memo, @AuthenticationPrincipal MemoUser currentUser) {
-		// memo.setUser(currentUser.getUser()); // 메모에 사용자 정보를 설정
+		memo.setUser(currentUser.getUserNo()); // 메모에 사용자 정보를 설정
 		 memo.setCreateDate(new Timestamp(System.currentTimeMillis()));
 		    //memoRepository.save(memo);
 		 	memoService.saveMemo(memo);
 		 return "redirect:/memo/list";
-		
 	}
 	
 	@GetMapping("/memo/list")

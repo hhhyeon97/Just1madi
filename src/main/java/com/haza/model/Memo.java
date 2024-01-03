@@ -39,4 +39,11 @@ public class Memo {
 
     @CreationTimestamp
     private Timestamp createDate; // 메모 생성일
+    
+    
+	public void setUser(int userNo) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }
