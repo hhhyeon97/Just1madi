@@ -71,10 +71,10 @@ h2 {
 <div class="glassmorphism-container">
 <h2>Edit Memo</h2>
 <form method="post"  action="${pageContext.request.contextPath}/memo/edit/${memoId}">
-    <div class="form-group">
+   <!--<div class="form-group">
     <label>Title</label>
     <input type="text" name="title" value="${memo.title}" /><br/>
-	</div>
+	</div>-->
 	<div class="form-group">
     <label>Content</label>
     <textarea name="content">${memo.content}</textarea><br/>

@@ -1,6 +1,7 @@
 package com.haza.controller;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,7 +83,7 @@ public class MemoController {
 	public String memoList(@AuthenticationPrincipal MemoUser currentUser, HttpSession session, Model model) {
 	    // 현재 로그인한 사용자의 메모 목록 조회
 	    List<Memo> memoList = memoRepository.findByUser(currentUser);
-
+	    System.out.println("=============== currentUser : "+currentUser);
 	    //시도 1
 	    // 추가: 현재 로그인한 사용자의 이름을 뷰에 전달
 	    //String loggedInUsername = currentUser.getUsername();
@@ -93,8 +94,20 @@ public class MemoController {
 	  //  String loggedInUsername = currentUser.getUsername();
 	   // session.setAttribute("loggedInUsername", loggedInUsername);
 	    
-	    // 뷰에 메모 목록 전달
+	    
+	    // 메모 내용을 10글자로 제한하여 가공
+	    List<String> shortMemoContents = new ArrayList<>();
+	    for (Memo memo : memoList) {
+	        String content = memo.getContent();
+	        if (content.length() > 10) {
+	            content = content.substring(0, 10) + "..."; // 10글자 초과 시 ... 추가
+	        }
+	        shortMemoContents.add(content);
+	    }
+	 
+	    // 뷰에 메모 목록 및 가공된 내용 전달
 	    model.addAttribute("memoList", memoList);
+	    model.addAttribute("shortMemoContents", shortMemoContents);
 
 	    return "memoList";
 	}
@@ -120,7 +133,7 @@ public class MemoController {
 				.orElseThrow(() -> new IllegalArgumentException("Invalid memoId"));
 
 		// 기존 메모의 내용 업데이트
-		memo.setTitle(updatedMemo.getTitle());
+		//memo.setTitle(updatedMemo.getTitle());
 		memo.setContent(updatedMemo.getContent());
 
 		// 메모 저장

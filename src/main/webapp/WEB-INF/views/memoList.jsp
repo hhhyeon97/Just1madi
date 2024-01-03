@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				<!-- 메모 목록 순회 -->
 				<c:forEach var="memo" items="${memoList}">
 					<tr>
-						<td>${memo.title}</td>
+						 <td><a href="<c:url value='/memo/detail/${memo.id}'/>">${shortMemoContents[status.index]}</a></td> <!-- 가공된 내용 표시 -->
 						<!--<td>${memo.content}</td>-->
 						<td>
 							<!-- 수정 버튼 --> <!-- <a href="<c:url value='/memo/edit/${memo.memoId}' />">Edit</a>-->

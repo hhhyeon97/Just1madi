@@ -71,12 +71,12 @@ h2 {
 <body>
 <script>
 function check(){
-	if(memo.title.value.length==0){
+	/*if(memo.title.value.length==0){
 		alert("제목을 입력하세요!");
 		memo.title.focus();
 		return false;
-	}
-	else if(memo.content.value.length==0){
+	}*/
+	if(memo.content.value.length==0){
 		alert("내용을 입력하세요!");
 		memo.content.focus();
 		return false;
@@ -86,9 +86,12 @@ function check(){
 <div class="glassmorphism-container">
 <h2>Memo</h2>
 <form name="memo" action="/memo/create_ok" method="post">
+<!--
 <div class="form-group">
 <input type="text" name="title" id="title" placeholder="제목" required="required">
 </div>
+-->
+
 <div class="form-group">
 <textarea name="content" rows="7" id="content" placeholder="memo..." required="required"></textarea>
 </div>
