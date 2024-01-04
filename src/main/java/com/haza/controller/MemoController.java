@@ -4,10 +4,10 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,7 +49,17 @@ public class MemoController {
 	public String createMemoForm(Model model) {
 	    // 현재 인증된 사용자 정보 가져오기
 	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    if (authentication != null) {
+	        // 현재 사용자의 principal을 가져오기
+	        Object principal = authentication.getPrincipal();
 
+	        if (principal instanceof UserDetails) {
+	            // UserDetails에서 사용자 이름 얻기
+	            String username = ((UserDetails) principal).getUsername();
+	            System.out.println("현재 사용자의 이름: " + username);
+	        }
+	    }
+	    /*
 	    // 특정 AuthenticationProvider를 사용한 경우
 	    if (authentication != null && authentication instanceof UsernamePasswordAuthenticationToken) {
 	        // UsernamePasswordAuthenticationToken을 통해 사용자 정보를 가져옴
@@ -61,7 +71,7 @@ public class MemoController {
 	            model.addAttribute("memo", new Memo());
 	        }
 	    }
-
+*/
 	    return "memoForm";
 	}
 
