@@ -1,6 +1,5 @@
 package com.haza.controller;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.haza.config.auth.PrincipalDetails;
 import com.haza.model.Memo;
-import com.haza.model.MemoUser;
 import com.haza.repository.MemoRepository;
 import com.haza.repository.UserRepository;
 import com.haza.service.MemoService;
@@ -59,24 +57,46 @@ public class MemoController {
 	            System.out.println("현재 사용자의 이름: " + username);
 	        }
 	    }
-	    /*
-	    // 특정 AuthenticationProvider를 사용한 경우
-	    if (authentication != null && authentication instanceof UsernamePasswordAuthenticationToken) {
-	        // UsernamePasswordAuthenticationToken을 통해 사용자 정보를 가져옴
-	        UsernamePasswordAuthenticationToken token = (UsernamePasswordAuthenticationToken) authentication;
-	        if (token.getPrincipal() instanceof MemoUser) {
-	            MemoUser currentUser = (MemoUser) token.getPrincipal();
-	            System.out.println("로그인한 유저 : " + currentUser);
-	            model.addAttribute("currentUser", currentUser);
-	            model.addAttribute("memo", new Memo());
-	        }
-	    }
-*/
 	    return "memoForm";
 	}
 
 	
+	
+	@PostMapping("/memo/create_ok")
+	public String saveMemo(@ModelAttribute Memo memo, Model model) {
+	    // 현재 인증된 사용자 정보 가져오기
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    
+	    if (authentication != null && authentication.isAuthenticated()) {
+	        // 현재 사용자의 principal을 가져오기
+	        Object principal = authentication.getPrincipal();
 
+	        if (principal instanceof UserDetails) {
+	            // UserDetails에서 사용자 이름 얻기
+	            String username = ((UserDetails) principal).getUsername();
+	            //int userNo = ((UserDetails) principal).getUserNo();
+	            // 메모에 현재 사용자의 이름 설정
+	            
+
+	            // 메모 저장
+	           // Memo savedMemo = memoService.saveMemo(memo);
+
+	            // 저장된 메모의 ID를 모델에 추가 (예시로 모델에 추가한 것일 뿐, 실제로는 뷰에서 사용할지는 상황에 따라 다름)
+	           // model.addAttribute("savedMemoId", savedMemo.getId());
+
+	            // 저장된 메모 확인을 위한 페이지로 리다이렉트 또는 해당 페이지로 이동
+	            return "redirect:/memo/list";
+	        }
+	    }
+	    
+	    // 인증 정보가 없거나 인증되지 않은 경우에 대한 처리
+	    // 필요에 따라 로그인 페이지로 리다이렉트 등을 할 수 있습니다.
+	    return "redirect:/login";
+	}
+	
+	
+	
+/*
 	// 메모 작성 처리
 	@PostMapping("/memo/create_ok")
 	public String createMemo(@ModelAttribute Memo memo, @AuthenticationPrincipal MemoUser currentUser) {
@@ -86,6 +106,10 @@ public class MemoController {
 		 	memoService.saveMemo(memo);
 		 return "redirect:/memo/list";
 	}
+	*/
+	
+	
+	
 	
 	@GetMapping("/memo/list")
 	public String memoList(@AuthenticationPrincipal PrincipalDetails currentUser, Model model) {
