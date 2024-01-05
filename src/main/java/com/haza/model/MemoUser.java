@@ -42,28 +42,5 @@ public class MemoUser {
     private List<Memo> memos = new ArrayList<>();
 	
 	
-	
-	 // 추가: toString 메서드 오버라이드
-    @Override
-    public String toString() {
-        return "MemoUser{" +
-                "userNo=" + userNo +
-                ", username='" + username + '\'' +
-                ", role='" + role + '\'' +
-                ", createDate=" + createDate +
-                '}';
-    }
-	
-    /*
-	  // 추가: MemoUser에서 User 정보를 반환하는 메서드
-    public MemoUser getUser() {
-    	MemoUser user = new MemoUser();
-        user.setUserNo(userNo);
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setRole(role);
-        user.setCreateDate(createDate);
-        return user;
-    }
-    */
+
 }
