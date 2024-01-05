@@ -84,6 +84,10 @@ public class PrincipalDetails implements UserDetails{
 			return user.getUserNo();
 		}
 
+		public int getMemoUser() {
+			return user.getUserNo();
+		}
+
 	
 	
 }

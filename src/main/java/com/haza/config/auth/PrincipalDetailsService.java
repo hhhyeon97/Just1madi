@@ -21,12 +21,16 @@ public class PrincipalDetailsService implements UserDetailsService{
 		MemoUser userEntity = userRepository.findByUsername(username);
 		System.out.println("username : "+username);
 		System.out.println("userEntity : "+userEntity);
-		if(userEntity != null) {
-			return new PrincipalDetails(userEntity); 
-		}
-		return null;
+		  if(userEntity != null) {
+	            return new PrincipalDetails(userEntity); 
+	        } else {
+	            throw new UsernameNotFoundException("User not found with username: " + username);
+	        }
 	}
-	
-	
+
+	public MemoUser findByUsername(String username) {
+		MemoUser userEntity = userRepository.findByUsername(username);
+		return userEntity;
+	}
 
 }

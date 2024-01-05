@@ -85,7 +85,7 @@ function check(){
 </script>
 <div class="glassmorphism-container">
 <h2>Memo</h2>
-<form name="memo" action="/memo/create_ok" method="post">
+<form name="memo" action="/memo/save" method="post">
 <!--
 <div class="form-group">
 <input type="text" name="title" id="title" placeholder="제목" required="required">

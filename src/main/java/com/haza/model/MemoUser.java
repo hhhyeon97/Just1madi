@@ -15,7 +15,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import lombok.Data;
+import lombok.ToString;
 
+@ToString(exclude = "MemoUser")
 @Data
 @Entity
 @SequenceGenerator(name = "user_seq", sequenceName = "user_sequence", allocationSize = 1)
@@ -36,11 +38,17 @@ public class MemoUser {
 	private Timestamp createDate;	//가입날짜
 	
 	
-	
 	 // Memo 엔터티와의 단방향 연관관계 설정
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Memo> memos = new ArrayList<>();
 	
+	 @Override
+	    public String toString() {
+	        return "MemoUser{" +
+	                // 다른 필드 출력
+	                ", createDate=" + (createDate != null ? createDate.getTime() : null) +
+	                '}';
+	    }
 	
 
 }

@@ -1,11 +1,13 @@
 package com.haza.service;
 
+import java.security.Timestamp;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import com.haza.config.auth.PrincipalDetailsService;
 import com.haza.model.Memo;
 import com.haza.model.MemoUser;
 import com.haza.repository.MemoRepository;
@@ -13,65 +15,36 @@ import com.haza.repository.MemoRepository;
 @Service
 public class MemoService {
 
-    //@Autowired
-    //private MemoRepository memoRepository;
+	 private final MemoRepository memoRepository;
+	 private final PrincipalDetailsService principalDetailsService;
+	 
+	 @Autowired
+	 public MemoService(PrincipalDetailsService principalDetailsService, MemoRepository memoRepository) {
+	     this.principalDetailsService = principalDetailsService;
+	     this.memoRepository = memoRepository;
+	 }
 
-    /*
-    @Transactional
-    public void createMemo(Memo memo, MemoUser currentUser) {
-        // MemoUser 엔터티의 인스턴스 생성 및 저장
-        MemoUser memoUser = new MemoUser();
-        memoUser.setUsername(currentUser.getUsername());
-        memoUser.setPassword(currentUser.getPassword());
-        // userRepository.save(memoUser); // 주석을 풀고 사용해보세요.
+	    public void saveMemo(String content) {
+	        // 현재 인증된 사용자 정보 가져오기
+	        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        // 메모의 user 필드에 MemoUser 할당
-        memo.setUser(memoUser);
-        // Memo 저장
-        memoRepository.save(memo);
-    }
-    */
-    
-   // @Transactional
-	//public void saveMemo(Memo memo) {
-   // 	   memoRepository.save(memo);
-	//}
-    
-    
-    private final MemoRepository memoRepository;
+	        if (principal instanceof UserDetails) {
+	            // UserDetails에서 사용자 이름 얻기
+	            String username = ((UserDetails) principal).getUsername();
 
-    @Autowired
-    public MemoService(MemoRepository memoRepository) {
-        this.memoRepository = memoRepository;
-    }
+	            // 사용자 이름으로 MemoUser 객체 가져오기 (사용자와 메모 간의 연결을 위해)
+	            MemoUser user = principalDetailsService.findByUsername(username);
 
-    public Memo saveMemo(Memo memo) {
-        // 현재 인증된 사용자 정보 가져오기
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	            
+	            // Memo 객체 생성 및 설정
+	            Memo memo = new Memo();
+	            memo.setUser(user);
+	            memo.setContent(content);
 
-        if (authentication != null && authentication.isAuthenticated()) {
-            // 현재 사용자의 principal을 가져오기
-            Object principal = authentication.getPrincipal();
-
-            if (principal instanceof UserDetails) {
-                // UserDetails에서 사용자 정보 얻기
-                //MemoUser currentUser = userService.findUserByUsername(((UserDetails) principal).getUsername());
-
-                String username = ((UserDetails) principal).getUsername();
-                // 메모의 유저 설정
-                memo.setUser(username);
-
-                // 메모 저장
-                return memoRepository.save(memo);
-            }
-        }
-
-        // 인증 정보가 없거나 인증되지 않은 경우에 대한 처리
-        // 필요에 따라 로그인 페이지로 리다이렉트 등을 할 수 있습니다.
-        return null; // 또는 예외 처리 등을 추가할 수 있습니다.
-    }
-    
-    
-    
+	            // Memo 저장
+	            memoRepository.save(memo);
+	            System.out.println("메모 저장 성공!");
+	        }
+	    }
     
 }

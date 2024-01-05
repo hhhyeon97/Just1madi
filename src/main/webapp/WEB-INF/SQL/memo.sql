@@ -4,9 +4,9 @@
 
 select * from MemoUser order by createdate desc;
 delete from MemoUser;
-select * from Memo;
+select * from Memo order by memoId desc;
 delete from Memo;
-drop table MemoUser;
+drop table Memo;
 commit;
 
 

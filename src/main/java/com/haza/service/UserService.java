@@ -16,6 +16,11 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
+
+	public MemoUser findByUsername(String username) {
+		return null;
+	}
+
 	 /*public boolean isUsernameExists(String username) {
 	        // 닉네임이 이미 존재하는지 확인
 	        Optional<MemoUser> existingMember = userRepository.findByUsername(username);
