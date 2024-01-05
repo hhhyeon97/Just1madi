@@ -24,8 +24,8 @@ h2 {
 .glassmorphism-container {
 	background-color: rgba(255, 255, 255, 0.6);
 	border-radius: 12px;
-	backdrop-filter: blur(10px);
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(1px); /* 10px */
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 	padding: 20px;
 	width: 400px;
 	height: 500px;

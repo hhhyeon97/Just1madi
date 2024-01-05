@@ -73,7 +73,7 @@ public class MemoController {
 	 @PostMapping("/memo/save")
 	    public String saveMemo(@RequestParam("content") String content) {
 	        memoService.saveMemo(content);
-	        return "redirect:/memo/create"; // 저장 후 목록 페이지로 리다이렉트
+	        return "redirect:/memo/create";
 	    }
 	/*
 	@PostMapping("/memo/create_ok")

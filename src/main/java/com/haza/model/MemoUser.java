@@ -15,9 +15,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import lombok.Data;
-import lombok.ToString;
+//import lombok.ToString;
 
-@ToString(exclude = "MemoUser")
+//@ToString(exclude = "MemoUser")
 @Data
 @Entity
 @SequenceGenerator(name = "user_seq", sequenceName = "user_sequence", allocationSize = 1)
