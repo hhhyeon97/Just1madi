@@ -153,6 +153,17 @@ public class MemoController {
 	
 	*/
 	 
+	  @GetMapping("/memo/detail/{memoId}")
+	    public String getMemoDetail(@PathVariable("memoId") int memoId, Model model) {
+		  Memo memo = memoRepository.findById(memoId)
+				  .orElseThrow(() -> new IllegalArgumentException("Invalid memoId"));
+		  
+		  System.out.println("Trying to fetch memo with ID: " + memoId);
+		  
+	        model.addAttribute("memo", memo);
+	        return "memoContent";
+	    }
+	 
 	 
 	// 메모 수정 폼으로 이동
 	@GetMapping("/memo/edit/{memoId}")

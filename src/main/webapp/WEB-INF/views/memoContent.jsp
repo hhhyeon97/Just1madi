@@ -12,14 +12,16 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, user-scalable=no, 
   maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-<title>메모 수정</title>
+<title>메모 내용</title>
 <style>
 h2 {
 	font-family: 'yg-jalnan';
 	letter-spacing: 5px;
 	margin-bottom: 20ppx;
 }
+
 .glassmorphism-container {
 	background-color: rgba(255, 255, 255, 0.6);
 	border-radius: 12px;
@@ -27,13 +29,18 @@ h2 {
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	padding: 20px;
 	width: 400px;
-	height: 400px;
+	height: 500px;
 	text-align: center;
 	position: relative;
 }
 
 .glassmorphism-container h2 {
 	color: #a6bfe0;	
+	margin-bottom: 30px;
+}
+
+.login-form {
+	margin-top: 20px;
 }
 
 .form-group {
@@ -42,13 +49,11 @@ h2 {
 }
 
 .form-group label {
-	
 	display: block;
 	margin-bottom: 5px;
 }
 
-.form-group input,textarea {
-	
+.form-group input, textarea {
 	width: 80%;
 	padding: 8px;
 	box-sizing: border-box;
@@ -56,31 +61,39 @@ h2 {
 	border-radius: 4px;
 	background-color: rgba(255, 255, 255, 0.1);
 	color: #495057;
-	
+}
+
+#memobtn {
+	position: relative;
+	top: 20px;
+	margin-top: 20px;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+table {
+	width: 100%;
 	margin-bottom: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 15px;
 }
-#savebtn, #listbtn{
-	margin-right:10px;
-	background-color: white;
-	border: 1px solid lightgray;
-	border-radius: 7px;
-}
-#listbtn{
-	width: 62px;
-}
+
 </style>
 </head>
 <body>
 <div class="glassmorphism-container">
-<h2>Edit Memo</h2>
-<form method="post"  action="${pageContext.request.contextPath}/memo/edit/${memoId}">
-	<div class="form-group">
-    <label></label>
-    <textarea name="content" rows="7">${memo.content}</textarea><br/>
-	</div>
-    <input type="submit" id="savebtn" class="btn btn-white" value="저장" />
-    <input type="button" id="listbtn" class="btn btn-white" value="목록" onclick="location='/memo/list';"/>
-</form>
+<h2>Memo Content</h2>
+<table>
+<tr>
+<td>${memo.content}</td>
+</tr>
+</table>
+<a href="/memo/list"><input type="button" value="목록"></a>
 </div>
 </body>
 </html>

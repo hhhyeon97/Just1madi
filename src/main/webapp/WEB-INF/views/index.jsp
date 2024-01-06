@@ -67,6 +67,16 @@ h2 {
 .form-group button {
 	margin-top: 20px;
 }
+
+.cusbtn{
+	border : 1px solid lightgray;
+	border-radius: 5px;
+	background-color:#fff;
+	padding :5px 10px;
+    display :inline-block;
+}
+
+
 </style>
 </head>
 <body>
@@ -98,9 +108,9 @@ h2 {
 				<label for="password">비밀번호</label> <input type="password" id="password" name="password" required>
 			</div>
 		<div class="form-group">
-			<button type="submit" class="btn btn-dark" onclick="login_check()">로그인</button>
+			<button type="submit" class="cusbtn" onclick="login_check()">로그인</button>
 			&nbsp;&nbsp;&nbsp;
-			<button type="button" class="btn btn-dark"
+			<button type="button" class="cusbtn"
 				onclick="location='/join';">회원가입</button>
 		</div>
 		</form>

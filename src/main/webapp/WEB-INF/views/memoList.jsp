@@ -13,10 +13,16 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, user-scalable=no, 
   maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
 <title>메모 리스트</title>
 <style>
-h2 {
+h2,h3 {
 	font-family: 'yg-jalnan';
 	letter-spacing: 5px;
 	margin-bottom: 20ppx;
@@ -34,7 +40,7 @@ h2 {
 	position: relative;
 }
 
-.glassmorphism-container h2 {
+.glassmorphism-container h2,h3 {
 	color: #a6bfe0;	
 	margin-bottom: 30px;
 }
@@ -66,7 +72,7 @@ h2 {
 #memobtn {
 	position: relative;
 	top: 20px;
-	margin-top: 30px;
+	margin-top: 20px;
 }
 
 a {
@@ -93,10 +99,13 @@ td {
 	border: 1px solid lightgray;
 	border-radius: 7px;
 }
-
+#cusbtn2 {
+	background-color: white;
+	border: 1px solid lightgray;
+	border-radius: 7px;
+}
 #cusbtn:hover {
-	background-color: black;
-	color: white;
+	/*background-color: #dde6ed;*/
 }
 
 #menuicon {
@@ -141,6 +150,7 @@ td {
 #menuButton {
 	cursor: pointer;
 }
+
 </style>
 </head>
 <body>
@@ -159,8 +169,39 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
+
+<!--
+<script>
+    $(document).ready(function () {
+        // 메모 미리보기를 클릭했을 때 이벤트 처리
+        $('.memo-preview').click(function (e) {
+            e.preventDefault();
+            var memoId = $(this).data('memo-id');
+
+            // Ajax 요청을 통해 메모 내용 가져오기
+            $.ajax({
+                url: '/memo/detail/' + memoId,
+                type: 'GET',
+                success: function (data) {
+                    // 모달 창 내의 내용 업데이트
+                    $('#memoContentBody').html(data);
+                },
+                error: function () {
+                    console.error('Failed to fetch memo content.');
+                }
+            });
+        });
+
+        // 모달이 닫힐 때 모달 내용 초기화
+        $('#memoModal').on('hidden.bs.modal', function () {
+            $('#memoContentBody').empty();
+        });
+    });
+</script>
+  -->
+
 	<div class="glassmorphism-container">
-		<h3>${username}</h3>
+		<h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAARxJREFUSEvVlNENwjAMRN1NYBOYBJgEmAQ2oZvAJtAnxVIanFxU1A8i5aOJes++2B5s5TWsrG+9gI2Z3cxsZ2avtK/T96gC7AEck3ipBehuZoCqSwGI+JH+viQxsjlMZ3wDObUyUQBsIQMXzyP1zLBpX0tBAZ6TDUS8TdHmOpxzTxbch+sXAILvpFrVUQD85x0ii87pnIfmHRZlkNvgFZM/MqL4Xy1XlQECHmkUIZEDXlym/uOqjaaatXmvLMIeHpldLh8Z+F/t5hoAQZoMa3pWtaMjQD4eWqMAONuzDCsqAnj3Nus7S6ucTbOuLgFd8yXwLK+yWVOWAB9usr4DiFs7G34loDXc1GOHw68EyOElKF//qz5QUcv7/wd8AKJNRBl0Vm5MAAAAAElFTkSuQmCC"/> ${pageContext.request.userPrincipal.name}</h3>
 		<h2>Memo List</h2>
 		<!--<span id="username">${loggedInUsername}</span>-->
 		<!--<span id="username">${sessionScope.loggedInUsername}</span>-->
@@ -179,14 +220,15 @@ document.addEventListener("DOMContentLoaded", function () {
 						<td>
 							<!--<a href="<c:url value='/memo/detail/${memo.memoId}'/>">${memo.content}</a>-->
 							<a href="<c:url value='/memo/detail/${memo.memoId}'/>">${memo.shortContent}</a>
+							 <!-- <a href="#" class="memo-preview" data-memo-id="${memo.memoId}" data-toggle="modal" data-target="#memoModal">${memo.shortContent}</a> -->
 						</td>
-						<td><input type="button" id="cusbtn" value="Edit"
+						<td><input type="button" id="cusbtn2" class="btn btn-white" value="Edit"
 							onclick="location='/memo/edit/${memo.memoId}';"></td>
 						<td>
 							<form method="post"
 								action="<c:url value='/memo/delete/${memo.memoId}' />"
 								style="display: inline;">
-								<input type="submit" id="cusbtn" value="Delete"
+								<input type="submit" id="cusbtn" class="btn btn-white" value="Delete"
 									onclick="return confirm('정말 삭제하시나요?');" />
 							</form>
 						</td>
@@ -195,10 +237,30 @@ document.addEventListener("DOMContentLoaded", function () {
 			</tbody>
 		</table>
 
+<%-- 모달 창
+<div class="modal fade" id="memoModal" tabindex="-1" role="dialog" aria-labelledby="memoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="memoModalLabel">Memo Content</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="memoContentBody">
+            </div>
+        </div>
+    </div>
+</div>
+--%>
+
+
 		<div class="form-group">
 			<input type="button" id="memobtn" value="memo" class="btn btn-secondary"
 				onclick="location='/memo/create';">
 		</div>
 	</div>
+
+
 </body>
 </html>

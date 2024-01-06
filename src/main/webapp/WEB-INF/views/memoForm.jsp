@@ -65,6 +65,11 @@ h2 {
 #memobtn{
 	position: relative;
 	top : 20px;	
+	padding : 10px;
+	
+}
+#savebtn{
+	margin-bottom: 20px;
 }
 </style>
 </head>
@@ -96,7 +101,7 @@ function check(){
 <textarea name="content" rows="7" id="content" placeholder="memo..." required="required"></textarea>
 </div>
 <div class="form-group" id="memobtn">
-<input type="submit" class="btn btn-secondary" value="저장" onclick="check()">
+<input type="submit" id="savebtn" class="btn btn-secondary" value="저장" onclick="check()">
 <input type="button" class="btn btn-secondary" value="목록" onclick="location='/memo/list';">
 </div>
 </form>
