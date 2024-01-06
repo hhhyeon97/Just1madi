@@ -96,8 +96,8 @@ function check(){
 <textarea name="content" rows="7" id="content" placeholder="memo..." required="required"></textarea>
 </div>
 <div class="form-group" id="memobtn">
-<input type="submit" class="btn btn-dark" value="저장" onclick="check()">
-<input type="button" class="btn btn-dark" value="목록" onclick="location='/memo/list';">
+<input type="submit" class="btn btn-secondary" value="저장" onclick="check()">
+<input type="button" class="btn btn-secondary" value="목록" onclick="location='/memo/list';">
 </div>
 </form>
 </div>

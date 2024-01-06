@@ -71,16 +71,12 @@ h2 {
 <div class="glassmorphism-container">
 <h2>Edit Memo</h2>
 <form method="post"  action="${pageContext.request.contextPath}/memo/edit/${memoId}">
-   <!--<div class="form-group">
-    <label>Title</label>
-    <input type="text" name="title" value="${memo.title}" /><br/>
-	</div>-->
 	<div class="form-group">
-    <label>Content</label>
-    <textarea name="content">${memo.content}</textarea><br/>
+    <label></label>
+    <textarea name="content" rows="7">${memo.content}</textarea><br/>
 	</div>
-    <input type="submit" id="savebtn" class="btn btn-dark" value="Save" />
-    <input type="button" id="listbtn" class="btn btn-dark" value="List" onclick="location='/memo/list';"/>
+    <input type="submit" id="savebtn" class="btn btn-secondary" value="저장" />
+    <input type="button" id="listbtn" class="btn btn-secondary" value="목록" onclick="location='/memo/list';"/>
 </form>
 </div>
 </body>

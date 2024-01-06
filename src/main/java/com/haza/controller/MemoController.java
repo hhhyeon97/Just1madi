@@ -1,10 +1,10 @@
 package com.haza.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.haza.config.auth.PrincipalDetails;
 import com.haza.model.Memo;
 import com.haza.repository.MemoRepository;
 import com.haza.repository.UserRepository;
@@ -28,15 +27,10 @@ public class MemoController {
 	@Autowired
 	private MemoRepository memoRepository;
 	
-	//@Autowired
-	//private MemoService memoService;
-	
 	@Autowired
 	private UserRepository userRepository;
 
-	
-	
-	  private final MemoService memoService;
+	private final MemoService memoService;
 
 	    @Autowired
 	    public MemoController(MemoService memoService) {
@@ -75,28 +69,6 @@ public class MemoController {
 	        memoService.saveMemo(content);
 	        return "redirect:/memo/create";
 	    }
-	/*
-	@PostMapping("/memo/create_ok")
-	public String saveMemo(@ModelAttribute Memo memo, Model model) {
-	    // 현재 인증된 사용자 정보 가져오기
-	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	    if (authentication != null && authentication.isAuthenticated()) {
-	        // 현재 사용자의 principal을 가져오기
-	        Object principal = authentication.getPrincipal();
-	        if (principal instanceof UserDetails) {
-	            String username = ((UserDetails) principal).getUsername();// UserDetails에서 사용자 이름 얻기
-	            // 메모에 현재 사용자의 이름 설정
-	            //memo.setUser(username);
-	            // 메모 저장
-	           memoRepository.save(memo);
-	            return "redirect:/memo/list";
-	        }
-	    }
-	    // 인증 정보가 없거나 인증되지 않은 경우에 대한 처리
-	    return "redirect:/";
-	}
-	*/
-	
 	
 /*
 	// 메모 작성 처리
@@ -110,9 +82,7 @@ public class MemoController {
 	}
 	*/
 	
-	
-	
-	
+	 /*
 	@GetMapping("/memo/list")
 	public String memoList(@AuthenticationPrincipal PrincipalDetails currentUser, Model model) {
 
@@ -127,7 +97,23 @@ public class MemoController {
 
 	    return "memoList";
 	}
+*/
+	 
+	 @GetMapping("/memo/list")
+	    public String viewMemoList(Model model) {
+	        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	        if (authentication != null) {
+	            Object principal = authentication.getPrincipal();
 
+	            if (principal instanceof UserDetails) {
+	                String username = ((UserDetails) principal).getUsername();
+	                List<Memo> memoList = memoService.getUserMemos(username);
+	                
+	                model.addAttribute("memoList", memoList);
+	            }
+	        }
+	        return "memoList";
+	    }
 
 	/*
 	
@@ -164,21 +150,20 @@ public class MemoController {
 
 	    return "memoList";
 	}
-
+	
+	*/
+	 
+	 
 	// 메모 수정 폼으로 이동
 	@GetMapping("/memo/edit/{memoId}")
 	public String editMemoForm(@PathVariable("memoId") int memoId, Model model) {
 		// 메모 ID를 기반으로 메모 조회
 		Memo memo = memoRepository.findById(memoId)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid memoId"));
-
 		// 메모 정보를 모델에 추가
 		model.addAttribute("memo", memo);
-
 		return "memoEdit";
 	}
-	
-	*/
 
 	// 메모 수정 처리
 	@PostMapping("/memo/edit/{memoId}")
@@ -186,14 +171,11 @@ public class MemoController {
 		// 기존 메모 조회
 		Memo memo = memoRepository.findById(memoId)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid memoId"));
-
 		// 기존 메모의 내용 업데이트
 		//memo.setTitle(updatedMemo.getTitle());
 		memo.setContent(updatedMemo.getContent());
-
 		// 메모 저장
 		memoRepository.save(memo);
-
 		// 수정이 완료된 후 메모 목록 페이지로 이동
 		return "redirect:/memo/list";
 	}	
@@ -211,7 +193,6 @@ public class MemoController {
 		// 삭제가 완료된 후 메모 목록 페이지로 이동
 		return "redirect:/memo/list";
 	}
-
 	
 	// 메모유저 정보 수정 
 	@GetMapping("/memo/myProfile")

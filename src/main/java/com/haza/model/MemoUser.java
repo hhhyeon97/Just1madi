@@ -37,7 +37,7 @@ public class MemoUser {
 	@CreationTimestamp
 	private Timestamp createDate;	//가입날짜
 	
-	
+	//@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	 // Memo 엔터티와의 단방향 연관관계 설정
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Memo> memos = new ArrayList<>();

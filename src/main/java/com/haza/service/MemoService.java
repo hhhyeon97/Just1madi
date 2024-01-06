@@ -1,6 +1,9 @@
 package com.haza.service;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -45,5 +48,14 @@ public class MemoService {
 	            System.out.println("메모 저장 성공!");
 	        }
 	    }
+	    
+	    
+	    public List<Memo> getUserMemos(String username) {
+	    	MemoUser user = principalDetailsService.findByUsername(username);
+	        return user != null ? user.getMemos() : new ArrayList<>();
+	    }
+
+	    
+	    
     
 }

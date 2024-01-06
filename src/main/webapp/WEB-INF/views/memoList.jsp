@@ -76,14 +76,15 @@ a {
 
 table {
 	width: 100%;
-	margin-bottom: 20px; /* Adjust margin-bottom as needed */
+	margin-bottom: 20px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin-top: 15px;
 }
 
 td {
-	padding: 20px; /* Add padding for better spacing */
+	padding: 20px;
 	text-align: left;
 }
 
@@ -119,11 +120,11 @@ td {
 
 #menuContainer a {
 	display: block;
-	margin-bottom: 10px;
+	margin-bottom: 2px;
 	text-decoration: none;
 	color: #333; /* 메뉴 텍스트 색상 */
 	
-	 transition: color 0.4s; /* 색상 변경 시 부드러운 전환 효과 */
+	transition: color 0.4s; /* 색상 변경 시 부드러운 전환 효과 */
     padding: 8px; /* 링크의 내부 여백 설정 */
 
     /* 배경색과 마우스를 올렸을 때의 스타일 변경 */
@@ -159,6 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 	<div class="glassmorphism-container">
+		<h3>${username}</h3>
 		<h2>Memo List</h2>
 		<!--<span id="username">${loggedInUsername}</span>-->
 		<!--<span id="username">${sessionScope.loggedInUsername}</span>-->
@@ -169,26 +171,21 @@ document.addEventListener("DOMContentLoaded", function () {
 		<a href="javascript:void(0);" id="menuButton"> <img id="menuicon"
 			src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAFtJREFUSEtjZKAxYKSx+QyjFhAM4QEJov9QZ8Esh/EJuhZNH5iLzQc0t4BYlxKlbkDigCiXEatoQOJgNJJRomdAUhHN44DmFhCbxIlSNyBxQJTLiFU06gOCIQUAArwMGUsaCXEAAAAASUVORK5CYII=" />
 		</a>
-
-
 		<table>
 			<tbody>
 				<!-- 메모 목록 순회 -->
-				<c:forEach var="memo" items="${memoList}">
+				<c:forEach var="memo" items="${memoList}" varStatus="status">
 					<tr>
-						 <td><a href="<c:url value='/memo/detail/${memo.id}'/>">${shortMemoContents[status.index]}</a></td> <!-- 가공된 내용 표시 -->
-						<!--<td>${memo.content}</td>-->
 						<td>
-							<!-- 수정 버튼 --> <!-- <a href="<c:url value='/memo/edit/${memo.memoId}' />">Edit</a>-->
-							<input type="button" id="cusbtn" value="Edit"
-							onclick="location='/memo/edit/${memo.memoId}';">
+							<!--<a href="<c:url value='/memo/detail/${memo.memoId}'/>">${memo.content}</a>-->
+							<a href="<c:url value='/memo/detail/${memo.memoId}'/>">${memo.shortContent}</a>
 						</td>
+						<td><input type="button" id="cusbtn" value="Edit"
+							onclick="location='/memo/edit/${memo.memoId}';"></td>
 						<td>
-							<!-- 삭제 폼 -->
 							<form method="post"
 								action="<c:url value='/memo/delete/${memo.memoId}' />"
 								style="display: inline;">
-
 								<input type="submit" id="cusbtn" value="Delete"
 									onclick="return confirm('정말 삭제하시나요?');" />
 							</form>
@@ -197,8 +194,9 @@ document.addEventListener("DOMContentLoaded", function () {
 				</c:forEach>
 			</tbody>
 		</table>
+
 		<div class="form-group">
-			<input type="button" id="memobtn" value="memo" class="btn btn-dark"
+			<input type="button" id="memobtn" value="memo" class="btn btn-secondary"
 				onclick="location='/memo/create';">
 		</div>
 	</div>
