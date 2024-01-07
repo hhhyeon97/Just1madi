@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -29,25 +30,18 @@ h2,h3 {
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    max-width: 400px; /* 최대 너비 설정 */
+    max-width: 500px; /* 최대 너비 설정 */
     width: 100%; /* 100%로 설정하여 부모 컨테이너에 맞게 유동적으로 변경 */
     min-height: 300px; /* 최소 높이 설정 */
     text-align: center;
     position: relative;
     overflow-y: auto; /* 내용이 많아지면 스크롤이 생기도록 설정 */
 }
-
-
 .glassmorphism-container h2,h3 {
 	color: #a6bfe0;	
 	margin-bottom: 15px;
 	margin-top: 20px;
 }
-
-.login-form {
-	margin-top: 20px;
-}
-
 .form-group {
 	margin-top: 20px;
 	margin-bottom: 15px;
@@ -69,11 +63,17 @@ h2,h3 {
 }
 
 #memobtn {
+	letter-spacing : 3px;
 	position: relative;
 	top: 20px;
 	margin-top: 20px;
 	cursor: pointer;
 	margin-bottom: 30px;
+}
+
+#memobtn:hover{
+	background-color:#a6bfe0;
+	border:1px solid #a6bfe0;
 }
 
 a {
@@ -105,22 +105,19 @@ td {
 	border: 1px solid lightgray;
 	border-radius: 7px;
 }
-#cusbtn:hover {
-	/*background-color: #dde6ed;*/
-}
 
 #menuicon {
-	width: 30px;
 	position: relative;
-	left: 160px;
-	bottom: 64px;
-	fill: #a6bfe0; /* 원하는 아이콘 색상으로 지정 */
+	left: 210px;
+	bottom: 80px;
+	color: #a6bfe0;
+	font-size: 24px;
 }
 
 #menuContainer {
 	display: none;
 	position: absolute;
-	top: 50px; /* 메뉴가 위치할 상대적인 높이 조절 */
+	top: 62px; /* 메뉴가 위치할 상대적인 높이 조절 */
 	right: 0;
 	background-color: #fff; /* 메뉴 배경 색상 */
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
@@ -175,8 +172,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		<div id="menuContainer">
 			<a href="/memo/myProfile">정보수정</a> <a href="/custom-logout">logout</a>
 		</div>
-		<a href="javascript:void(0);" id="menuButton"> <img id="menuicon"
-			src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAFtJREFUSEtjZKAxYKSx+QyjFhAM4QEJov9QZ8Esh/EJuhZNH5iLzQc0t4BYlxKlbkDigCiXEatoQOJgNJJRomdAUhHN44DmFhCbxIlSNyBxQJTLiFU06gOCIQUAArwMGUsaCXEAAAAASUVORK5CYII=" />
+		<a href="javascript:void(0);" id="menuButton"> 
+		<!--<img id="menuicon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAFtJREFUSEtjZKAxYKSx+QyjFhAM4QEJov9QZ8Esh/EJuhZNH5iLzQc0t4BYlxKlbkDigCiXEatoQOJgNJJRomdAUhHN44DmFhCbxIlSNyBxQJTLiFU06gOCIQUAArwMGUsaCXEAAAAASUVORK5CYII=" />
+		-->
+		<i id="menuicon" class='bx bx-menu'></i>
 		</a>
 		<table>
 			<tbody>
@@ -185,7 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
 					<tr>
 						<td>
 							<!--<a href="<c:url value='/memo/detail/${memo.memoId}'/>">${memo.content}</a>-->
-							<a href="<c:url value='/memo/detail/${memo.memoId}'/>">${memo.shortContent}</a>
+							<a href="<c:url value='/memo/detail/${memo.memoId}'/>">${memo.shortContent}<hr></a>
 							 <!-- <a href="#" class="memo-preview" data-memo-id="${memo.memoId}" data-toggle="modal" data-target="#memoModal">${memo.shortContent}</a> -->
 						</td>
 						<td><input type="button" id="cusbtn2" class="btn btn-white" value="Edit"

@@ -71,6 +71,16 @@ h2 {
 #savebtn{
 	margin-bottom: 20px;
 }
+
+#savebtn:hover{
+	background-color:#a6bfe0;
+	border:1px solid #a6bfe0;
+}
+#listbtn:hover{
+	background-color:#a6bfe0;
+	border:1px solid #a6bfe0;
+}
+
 </style>
 </head>
 <body>
@@ -102,7 +112,7 @@ function check(){
 </div>
 <div class="form-group" id="memobtn">
 <input type="submit" id="savebtn" class="btn btn-secondary" value="저장" onclick="check()">
-<input type="button" class="btn btn-secondary" value="목록" onclick="location='/memo/list';">
+<input type="button" id="listbtn" class="btn btn-secondary" value="목록" onclick="location='/memo/list';">
 </div>
 </form>
 </div>

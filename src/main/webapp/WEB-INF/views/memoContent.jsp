@@ -34,16 +34,10 @@ h2 {
 	text-align: center;
 	position: relative;
 }
-
 .glassmorphism-container h2 {
 	color: #a6bfe0;	
 	margin-bottom: 30px;
 }
-
-.login-form {
-	margin-top: 20px;
-}
-
 .form-group {
 	margin-top: 20px;
 	margin-bottom: 15px;
@@ -63,18 +57,6 @@ h2 {
 	background-color: rgba(255, 255, 255, 0.1);
 	color: #495057;
 }
-
-#memobtn {
-	position: relative;
-	top: 20px;
-	margin-top: 20px;
-}
-
-a {
-	text-decoration: none;
-	color: inherit;
-}
-
 table {
 	width: 100%;
 	margin-bottom: 20px;
@@ -83,7 +65,10 @@ table {
 	align-items: center;
 	margin-top: 15px;
 }
-
+#btn:hover{
+	background-color:#a6bfe0;
+	border:1px solid #a6bfe0;
+}
 </style>
 </head>
 <body>
@@ -97,7 +82,10 @@ table {
 <td>${content}</td>
 </tr>
 </table>
-<a href="/memo/list"><input type="button" value="목록"></a>
+		<div class="form-group">
+			<input type="button" id="btn" value="목록" class="btn btn-secondary"
+				onclick="location='/memo/list';">
+		</div>
 </div>
 </body>
 </html>

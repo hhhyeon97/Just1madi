@@ -88,6 +88,19 @@
     display :inline-block;
 	
 }
+
+#checkbtn:hover {
+	background-color:#a6bfe0;
+	border:1px solid #a6bfe0;
+}
+
+#goLogin{
+	margin-top:25px;
+}
+#goLogin a{
+	color: #a6bfe0;
+	 text-underline-offset : 5px;
+}
 </style>
 </head>
 <script>
@@ -180,6 +193,9 @@ function validate_userid(username) {
 			 <input type="reset" value="취소" id="btn2" class="cusbtn" onclick="document.m.reset(); m.username.focus();"/>
 		</div>
 		</form>
+			<div id="goLogin">
+				<a href="/">이미 회원이신가요 ?</a>
+			</div>
 	</div>
 </body>
 </html>
