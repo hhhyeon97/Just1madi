@@ -172,12 +172,22 @@ public class MemoController {
 		  
 		 
 		  // JPA의 @CreationTimestamp를 통해 자동으로 설정된 Timestamp 가져오기 - >수정된 날짜값 가져오기
-	        Timestamp memoDate = memo.getUpdateDate();
+	        //Timestamp memoDate = memo.getUpdateDate();
+	        
+		  
+		  // 수정된 날짜가 null이면 생성된 날짜를 사용하도록 처리
+	        Timestamp memoDate;
+	        if (memo.getUpdateDate() != null) {
+	            memoDate = memo.getUpdateDate();
+	        } else {
+	            memoDate = memo.getCreateDate();
+	        }
 
 	        // SimpleDateFormat을 사용하여 포맷 지정
 	        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	        String formattedDate = format.format(memoDate);
-
+	        
+	        
 	        model.addAttribute("time", formattedDate);
 		    model.addAttribute("memo", memo);
 	        model.addAttribute("content",memoEnter);
