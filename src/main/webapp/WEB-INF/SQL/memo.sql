@@ -5,7 +5,7 @@
 select * from MemoUser order by createdate desc;
 delete from MemoUser;
 select * from Memo order by memoId desc;
-delete from Memo;
+delete from Memo where memoId=81;
 drop table Memo;
 commit;
 

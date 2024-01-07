@@ -3,7 +3,7 @@ package com.haza.model;
 import java.sql.Timestamp;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -39,6 +39,19 @@ public class Memo {
 
     @CreationTimestamp
     private Timestamp createDate; // 메모 생성일
+    
+    
+    @UpdateTimestamp
+    @Column(name = "updateDate")
+    private Timestamp updateDate;
+    
+    public Timestamp getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Timestamp updateDate) {
+        this.updateDate = updateDate;
+    }
     
     // 10글자 이상일 때 ... 추가 
     public String getShortContent() {

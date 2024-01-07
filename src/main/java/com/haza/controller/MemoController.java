@@ -171,12 +171,12 @@ public class MemoController {
 		  //textarea 태그 영역에서 엔터키 친부분을 웹브라우에 출력할때 줄바꿈처리
 		  
 		 
-		  // JPA의 @CreationTimestamp를 통해 자동으로 설정된 Timestamp 가져오기
-	        Timestamp createDate = memo.getCreateDate();
+		  // JPA의 @CreationTimestamp를 통해 자동으로 설정된 Timestamp 가져오기 - >수정된 날짜값 가져오기
+	        Timestamp memoDate = memo.getUpdateDate();
 
 	        // SimpleDateFormat을 사용하여 포맷 지정
 	        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-	        String formattedDate = format.format(createDate);
+	        String formattedDate = format.format(memoDate);
 
 	        model.addAttribute("time", formattedDate);
 		    model.addAttribute("memo", memo);
@@ -206,6 +206,8 @@ public class MemoController {
 		// 기존 메모의 내용 업데이트
 		//memo.setTitle(updatedMemo.getTitle());
 		memo.setContent(updatedMemo.getContent());
+		// @UpdateTimestamp 어노테이션에 의해 updateDate가 자동으로 갱신됩니다.
+
 		// 메모 저장
 		memoRepository.save(memo);
 		// 수정이 완료된 후 메모 목록 페이지로 이동
