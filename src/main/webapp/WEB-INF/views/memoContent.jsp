@@ -1,3 +1,4 @@
+<%@ page import="org.springframework.format.datetime.DateFormatter" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -90,7 +91,10 @@ table {
 <h2>Memo Content</h2>
 <table>
 <tr>
-<td>${memo.content}</td>
+<td>${time}</td>
+</tr>
+<tr>
+<td>${content}</td>
 </tr>
 </table>
 <a href="/memo/list"><input type="button" value="목록"></a>

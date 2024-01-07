@@ -20,4 +20,7 @@ public interface MemoRepository extends JpaRepository<Memo, Integer> {
 	//List<Memo> findByUserNo(int userNo);
 
 	List<Memo> findByUser_UserNo(int userNo);
+	
+	
+	
 }

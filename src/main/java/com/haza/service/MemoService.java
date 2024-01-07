@@ -2,6 +2,7 @@ package com.haza.service;
 
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,13 +50,23 @@ public class MemoService {
 	        }
 	    }
 	    
-	    
+	   /* 
 	    public List<Memo> getUserMemos(String username) {
 	    	MemoUser user = principalDetailsService.findByUsername(username);
 	        return user != null ? user.getMemos() : new ArrayList<>();
 	    }
-
+*/
 	    
+	    public List<Memo> getUserMemos(String username) {
+	        MemoUser user = principalDetailsService.findByUsername(username);
+	        List<Memo> memos = user != null ? user.getMemos() : new ArrayList<>();
+
+	        // 내림차순 정렬
+	        memos.sort(Comparator.comparing(Memo::getCreateDate).reversed());
+
+	        return memos;
+	    }
+
 	    
     
 }

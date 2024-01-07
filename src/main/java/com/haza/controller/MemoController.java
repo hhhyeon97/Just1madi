@@ -1,7 +1,10 @@
 package com.haza.controller;
 
-import java.util.ArrayList;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
+
+import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -32,10 +35,14 @@ public class MemoController {
 
 	private final MemoService memoService;
 
-	    @Autowired
-	    public MemoController(MemoService memoService) {
+	private final DataSource dataSource;  // dataSource 주입    
+	    
+	@Autowired
+	    public MemoController(MemoService memoService,DataSource dataSource) {
 	        this.memoService = memoService;
+	        this.dataSource = dataSource;
 	    }
+	    
 	    
 	/*
 	@GetMapping("/memo/create")
@@ -108,7 +115,7 @@ public class MemoController {
 	            if (principal instanceof UserDetails) {
 	                String username = ((UserDetails) principal).getUsername();
 	                List<Memo> memoList = memoService.getUserMemos(username);
-	                
+	               
 	                model.addAttribute("memoList", memoList);
 	            }
 	        }
@@ -160,7 +167,21 @@ public class MemoController {
 		  
 		  System.out.println("Trying to fetch memo with ID: " + memoId);
 		  
-	        model.addAttribute("memo", memo);
+		  String memoEnter=memo.getContent().replace("\n","<br/>"); 
+		  //textarea 태그 영역에서 엔터키 친부분을 웹브라우에 출력할때 줄바꿈처리
+		  
+		 
+		  // JPA의 @CreationTimestamp를 통해 자동으로 설정된 Timestamp 가져오기
+	        Timestamp createDate = memo.getCreateDate();
+
+	        // SimpleDateFormat을 사용하여 포맷 지정
+	        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	        String formattedDate = format.format(createDate);
+
+	        model.addAttribute("time", formattedDate);
+		    model.addAttribute("memo", memo);
+	        model.addAttribute("content",memoEnter);
+	        
 	        return "memoContent";
 	    }
 	 
