@@ -8,6 +8,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, user-scalable=no, 
   maximum-scale=1.0, minimum-scale=1.0">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <link
@@ -17,6 +18,7 @@
 	crossorigin="anonymous">
 <title>회원 정보 수정</title>
 <style>
+
 h2 {
 	font-family: 'yg-jalnan';
 	letter-spacing: 5px;
@@ -65,6 +67,18 @@ table {
 	align-items: center;
 	margin-top: 15px;
 }
+
+th {
+	text-align: left;
+	color: gray;
+}
+
+#btn1, #btn2 {
+	background-color: white;
+	border: 1px solid lightgray;
+	border-radius: 7px;
+}
+
 #btn1:hover{
 	background-color:#a6bfe0;
 	border:1px solid #a6bfe0;
@@ -77,27 +91,30 @@ table {
 </head>
 <body>
 <div class="glassmorphism-container">
-<h2>회원 정보 수정</h2>
+<h2>비밀번호 변경</h2>
 <form name="frm" method="post" action="/memo/myProfile_ok"
 			onsubmit="return edit_check();">
 			<table>
 				<tr>
-					<th>회원 닉네임</th>
+					<th>닉네임</th>
 					<td>${username}</td>
 				</tr>
+				
+				
 				<tr>
 					<th>새 비밀번호</th>
-					<td><input type="password" name="password" id="password" size="14"/></td>
+					<td><div class="form-group"><input type="password" name="password" id="password" size="14"/></div></td>
 				</tr>
+			
 				<tr>
 					<th>비밀번호 재확인</th>
-					<td><input type="password" name="password2" id="password2"
-						size="14"/></td>
+					<td><div class="form-group"><input type="password" name="password2" id="password2"
+						size="14"/>	</div></td>
 				</tr>
 			</table>
 			<div>
-				<input type="submit" id="btn1" value="수정"/>
-				 <input type="reset" id="btn2" value="취소" onclick="$('#username').focus();" />
+				<input type="submit" id="btn1" class="btn btn-white" value="수정"/>
+				 <input type="reset" id="btn2" class="btn btn-white" value="취소" onclick="$('#username').focus();" />
 			</div>
 		</form>
 </div>

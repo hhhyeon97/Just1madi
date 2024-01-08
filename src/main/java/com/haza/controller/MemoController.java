@@ -276,12 +276,15 @@ public class MemoController {
 	            if (principal instanceof UserDetails) {
 	                String username = ((UserDetails) principal).getUsername();
 	                System.out.println("현재 사용자의 이름: " + username);
+	                
+	                // 모델에 유저 이름 추가
+	                model.addAttribute("username", username);
 	            }
 	        }
 	        return "myProfile";
     }//userEdit()
 
-    // 유저 정보 수정 처리 
+    // 유저 정보 수정 처리
     @PostMapping("/memo/myProfile_ok")
     public ModelAndView userEditOk(MemoUser mu,HttpServletResponse response,
     		HttpSession session) throws Exception{
@@ -292,19 +295,37 @@ public class MemoController {
 	            Object principal = authentication.getPrincipal();
 	            if (principal instanceof UserDetails) {
 	                String username = ((UserDetails) principal).getUsername();
-	        mu.setUsername(username);
 	        // 비밀번호 인코딩
             String encodedPassword = bCryptPasswordEncoder.encode(mu.getPassword());
-            mu.setPassword(encodedPassword);
-    		 userRepository.save(mu);// 회원정보 수정
+           
+            // 기존 사용자 정보를 조회 
+            //( username을 변경하지 않고 무결성조건 위배되지 않게 기존 username으로 insert x - > 업데이트로 처리할 수 있게 )
+            MemoUser existingUser = userRepository.findByUsername(username);
+
+            if (existingUser != null) {
+                // 기존 사용자 정보를 업데이트
+                existingUser.setPassword(encodedPassword);
+                // 다른 필요한 업데이트 작업 수행
+
+                userRepository.save(existingUser);
+            }
+            
+            
+            //mu.setUsername(username); // 현재 사용자 이름 저장
+            //mu.setPassword(encodedPassword);
+    		 //userRepository.save(mu);// 회원정보 수정
     		//memoService.updateUser(mu);
-    		// 세션 로그아웃 처리
+    		
+            // 세션 로그아웃 처리
             session.invalidate();
             
-            out.println("<script>");
-            out.println("alert('정보 수정했습니다!새로운 비밀번호로 다시 로그인해주세요.');");
+            return new ModelAndView("redirect:/");
+            
+            /*out.println("<script>");
+            out.println("alert('정보 수정 완료되었습니다!\n새로운 비밀번호로 다시 로그인해주세요.');");
             out.println("location='/';"); // 로그인 페이지로 이동
             out.println("</script>");
+            */
 	            }
     }
     	return null;
