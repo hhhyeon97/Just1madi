@@ -117,7 +117,7 @@ td {
 #menuContainer {
 	display: none;
 	position: absolute;
-	top: 62px; /* 메뉴가 위치할 상대적인 높이 조절 */
+	top: 40px; /* 메뉴가 위치할 상대적인 높이 조절 */
 	right: 0;
 	background-color: #fff; /* 메뉴 배경 색상 */
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
@@ -140,11 +140,6 @@ td {
         background-color: #a6bfe0; /* 마우스를 올렸을 때의 배경색 */
     }
 }
-/*
-#menuContainer a:hover {
-	background-color: lightgray;
-}
-*/
 </style>
 </head>
 <body>

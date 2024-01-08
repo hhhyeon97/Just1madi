@@ -14,17 +14,20 @@ import com.haza.config.auth.PrincipalDetailsService;
 import com.haza.model.Memo;
 import com.haza.model.MemoUser;
 import com.haza.repository.MemoRepository;
+import com.haza.repository.UserRepository;
 
 @Service
 public class MemoService {
 
 	 private final MemoRepository memoRepository;
+	 //private final UserRepository userRepository;
 	 private final PrincipalDetailsService principalDetailsService;
 	 
 	 @Autowired
 	 public MemoService(PrincipalDetailsService principalDetailsService, MemoRepository memoRepository) {
 	     this.principalDetailsService = principalDetailsService;
 	     this.memoRepository = memoRepository;
+	     //this.userRepository = userRepository;
 	 }
 
 	    public void saveMemo(String content) {
@@ -66,6 +69,28 @@ public class MemoService {
 
 	        return memos;
 	    }
+
+	    
+	    /*
+		public void updateUser(MemoUser mu) {
+			
+			 // 기존 사용자 레코드를 찾아오기
+	        MemoUser existingUser = userRepository.findByUsername(mu.getUsername());
+
+	       
+	        // 중복된 닉네임이 있는 경우
+	        if (existingUser != null && !existingUser.getUserNo().equals(mu.getUserNo())) {
+	            // 사용자에게 알리고 입력을 다시 받도록 처리
+	            throw new DuplicateUsernameException("중복된 닉네임입니다. 다른 닉네임을 입력해주세요.");
+	        }
+
+	        // 중복된 닉네임이 없는 경우, 업데이트 수행
+	        userRepository.save(mu);
+	    }
+			
+		}
+*/
+	
 
 	    
     

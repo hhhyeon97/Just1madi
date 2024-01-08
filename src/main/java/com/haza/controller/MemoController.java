@@ -1,5 +1,6 @@
 package com.haza.controller;
 
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,16 +19,24 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.haza.model.Memo;
+import com.haza.model.MemoUser;
 import com.haza.repository.MemoRepository;
 import com.haza.repository.UserRepository;
 import com.haza.service.MemoService;
+
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 
 @Controller
 public class MemoController {
 
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 	@Autowired
 	private MemoRepository memoRepository;
 	
@@ -74,7 +84,7 @@ public class MemoController {
 	 @PostMapping("/memo/save")
 	    public String saveMemo(@RequestParam("content") String content) {
 	        memoService.saveMemo(content);
-	        return "redirect:/memo/create";
+	        return "redirect:/memo/list";
 	    }
 	
 /*
@@ -238,10 +248,67 @@ public class MemoController {
 		return "redirect:/memo/list";
 	}
 	
-	// 메모유저 정보 수정 
+	/* 메모유저 정보 수정 
 	@GetMapping("/memo/myProfile")
 	public String myProfile() {
 		return "myProfile";
 	}
+	*/
+	
+	/*
+	 // 회원정보 수정 폼에 접근하는 메서드
+    @GetMapping("/user/edit")
+    public String showEditForm(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+        // 현재 로그인한 사용자의 정보를 가져와서 모델에 추가
+        model.addAttribute("user", userDetails);
+        return "editUserForm"; // 회원정보 수정 폼의 뷰 이름
+    }
+	*/
+	
+	// 유저 정보 수정폼
+    @GetMapping("/memo/myProfile")
+    public String userEdit(Model model)
+    throws Exception{
+    	  Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	        if (authentication != null) {
+	            Object principal = authentication.getPrincipal();
 
+	            if (principal instanceof UserDetails) {
+	                String username = ((UserDetails) principal).getUsername();
+	                System.out.println("현재 사용자의 이름: " + username);
+	            }
+	        }
+	        return "myProfile";
+    }//userEdit()
+
+    // 유저 정보 수정 처리 
+    @PostMapping("/memo/myProfile_ok")
+    public ModelAndView userEditOk(MemoUser mu,HttpServletResponse response,
+    		HttpSession session) throws Exception{
+    	PrintWriter out=response.getWriter();
+    	
+    	 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	        if (authentication != null) {
+	            Object principal = authentication.getPrincipal();
+	            if (principal instanceof UserDetails) {
+	                String username = ((UserDetails) principal).getUsername();
+	        mu.setUsername(username);
+	        // 비밀번호 인코딩
+            String encodedPassword = bCryptPasswordEncoder.encode(mu.getPassword());
+            mu.setPassword(encodedPassword);
+    		 userRepository.save(mu);// 회원정보 수정
+    		//memoService.updateUser(mu);
+    		// 세션 로그아웃 처리
+            session.invalidate();
+            
+            out.println("<script>");
+            out.println("alert('정보 수정했습니다!새로운 비밀번호로 다시 로그인해주세요.');");
+            out.println("location='/';"); // 로그인 페이지로 이동
+            out.println("</script>");
+	            }
+    }
+    	return null;
+    }//userEditOk()
+    
+    
 }
