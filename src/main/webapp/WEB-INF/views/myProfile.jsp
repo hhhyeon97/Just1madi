@@ -8,14 +8,14 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, user-scalable=no, 
   maximum-scale=1.0, minimum-scale=1.0">
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<link
+  <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <title>회원 정보 수정</title>
 <style>
 
@@ -28,7 +28,7 @@ h2 {
 .glassmorphism-container {
 	background-color: rgba(255, 255, 255, 0.6);
 	border-radius: 12px;
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(1px);
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	padding: 20px;
 	max-width: 400px; /* 유동적인 폭을 제한하기 위해 max-width 추가 */
@@ -59,6 +59,11 @@ h2 {
 	background-color: rgba(255, 255, 255, 0.1);
 	color: #495057;
 }
+
+.form-group #btn1,#btn2{
+	width: 50%;
+	margin-bottom: 15px;
+}
 table {
 	width: 100%;
 	margin-bottom: 20px;
@@ -82,10 +87,13 @@ th {
 #btn1:hover{
 	background-color:#a6bfe0;
 	border:1px solid #a6bfe0;
+	color:white;
+	
 }
 #btn2:hover{
 	background-color:#a6bfe0;
 	border:1px solid #a6bfe0;
+	color:white;
 }
 </style>
 </head>
@@ -112,7 +120,7 @@ th {
 						size="14"/>	</div></td>
 				</tr>
 			</table>
-			<div>
+					<div class="form-group">
 				<input type="submit" id="btn1" class="btn btn-white" value="수정"/>
 				 <input type="reset" id="btn2" class="btn btn-white" value="취소" onclick="location='/memo/list';" />
 			</div>

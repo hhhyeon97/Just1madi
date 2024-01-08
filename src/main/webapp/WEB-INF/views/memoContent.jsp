@@ -26,7 +26,7 @@ h2 {
 .glassmorphism-container {
 	background-color: rgba(255, 255, 255, 0.6);
 	border-radius: 12px;
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(1px);
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	max-width: 400px; /* 유동적인 폭을 제한하기 위해 max-width 추가 */
 	width: 100%; /* 100%로 설정하여 부모의 폭에 맞추기 */
@@ -38,8 +38,8 @@ h2 {
 }
 
 .glassmorphism-container td {
-	   white-space: pre-wrap; /* 공백은 유지하고 줄바꿈 처리 */
-        word-wrap: break-word; /* 단어 단위로 줄바꿈 처리 */
+	/*white-space: pre-wrap;*/ /* 공백은 유지하고 줄바꿈 처리 */
+	word-wrap: break-word; /* 단어 단위로 줄바꿈 처리 */
 	max-width: 300px; /* 원하는 최대 너비로 조절 */
 }
 
@@ -85,6 +85,7 @@ table {
 #mar {
 	position: relative;
 	bottom: 25px;
+	color: gray;
 }
 </style>
 </head>

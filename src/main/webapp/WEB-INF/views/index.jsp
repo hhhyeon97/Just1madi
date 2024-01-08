@@ -19,8 +19,8 @@
 <style>
 
 body{
-	background-image: none;
-	color:fff;
+	/*background-image: none;
+	color:fff;*/
 }
 
 h2 {
@@ -32,7 +32,7 @@ h2 {
 .glassmorphism-container {
 	background-color: rgba(255, 255, 255, 0.6);
 	border-radius: 12px;
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(1px);
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	padding: 20px;
 	width: 400px;

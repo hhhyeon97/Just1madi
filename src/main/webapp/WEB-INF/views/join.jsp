@@ -19,14 +19,14 @@
 <style>
 
 body{
-	background-image: none;
-	color:fff;
+	/*background-image: none;
+	color:fff;*/
 }
 
 .glassmorphism-container {
 	background-color: rgba(255, 255, 255, 0.6); /* 0.85*/
 	border-radius: 12px;
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(1px);
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	padding: 20px;
 	max-width: 400px; /* 유동적인 폭을 제한하기 위해 max-width 추가 */

@@ -15,6 +15,9 @@
   <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <title>메모하자</title>
 <style>
+body{
+	
+}
 h2 {
 	font-family: 'yg-jalnan';
 	letter-spacing: 5px;
@@ -27,8 +30,10 @@ h2 {
 	backdrop-filter: blur(1px); /* 10px */
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 	padding: 20px;
-	width: 400px;
-	height: 500px;
+	/*width: 400px;
+	height: 500px;*/
+	max-width: 500px; /* 최대 너비 설정 */
+    width: 100%;
 	text-align: center;
 	position: relative;
 }

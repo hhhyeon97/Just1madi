@@ -23,7 +23,7 @@ h2 {
 .glassmorphism-container {
 	background-color: rgba(255, 255, 255, 0.6);
 	border-radius: 12px;
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(1px);
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	padding: 20px;
 	max-width: 400px; /* 유동적인 폭을 제한하기 위해 max-width 추가 */
@@ -59,11 +59,24 @@ h2 {
 	margin-bottom: 20px;
 }
 #savebtn, #listbtn{
-	margin-right:10px;
+	margin-right:20px;
 	background-color: white;
 	border: 1px solid lightgray;
 	border-radius: 7px;
 }
+#savebtn:hover{
+	background-color:#a6bfe0;
+	border:1px solid #a6bfe0;
+	color:white;
+	
+}
+#listbtn:hover{
+	background-color:#a6bfe0;
+	border:1px solid #a6bfe0;
+	color:white;
+	
+}
+
 #listbtn{
 	width: 62px;
 }
