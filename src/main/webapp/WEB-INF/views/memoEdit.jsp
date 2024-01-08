@@ -26,8 +26,8 @@ h2 {
 	backdrop-filter: blur(10px);
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	padding: 20px;
-	width: 400px;
-	height: 400px;
+	max-width: 400px; /* 유동적인 폭을 제한하기 위해 max-width 추가 */
+    width: 100%;
 	text-align: center;
 	position: relative;
 }
@@ -48,7 +48,6 @@ h2 {
 }
 
 .form-group input,textarea {
-	
 	width: 80%;
 	padding: 8px;
 	box-sizing: border-box;

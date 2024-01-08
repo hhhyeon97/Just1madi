@@ -18,6 +18,12 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <title>메모 리스트</title>
 <style>
+body{
+	height:auto;
+	background-color: white;
+	background-image: none;
+}
+
 h2,h3 {
 	font-family: 'yg-jalnan';
 	letter-spacing: 5px;
@@ -32,10 +38,12 @@ h2,h3 {
     padding: 20px;
     max-width: 500px; /* 최대 너비 설정 */
     width: 100%; /* 100%로 설정하여 부모 컨테이너에 맞게 유동적으로 변경 */
-    min-height: 300px; /* 최소 높이 설정 */
+    /*min-height: 300px;*/ /* 최소 높이 설정 */
     text-align: center;
     position: relative;
     overflow-y: auto; /* 내용이 많아지면 스크롤이 생기도록 설정 */
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 .glassmorphism-container h2,h3 {
 	color: #a6bfe0;	
@@ -108,8 +116,8 @@ td {
 
 #menuicon {
 	position: relative;
-	left: 210px;
-	bottom: 80px;
+	left: 160px;
+	bottom: 45px;
 	color: #a6bfe0;
 	font-size: 24px;
 }

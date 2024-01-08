@@ -143,7 +143,7 @@ function id_check() {
         $("#idcheck").data("isDuplicate", true);
         return false;
     } else if (!(validate_userid(username))) {
-        $("#idcheck").text("닉네임은 영문 소문자, 숫자, 한글, 밑줄(_) 조합만 가능합니다.").css("color", "red").show();
+        $("#idcheck").html("닉네임은 영문 소문자, 숫자, 한글,<br>밑줄(_) 조합만 가능합니다.").css("color", "red").show();
         $("#username").val('').focus();
         $("#idcheck").data("isDuplicate", true);
         return false;
@@ -177,7 +177,7 @@ function validate_userid(username) {
 			<h2>회 원 가 입</h2>
 			<div class="form-group">
 				<label for="username">닉네임</label> <input type="text" id="username" name="username" required>
-			<input type="button" value="닉네임중복체크"
+			<input type="button" value="닉네임체크"
 						id="checkbtn" class="btn btn-dark" onclick="id_check();">
 			<br>
 			<span id="idcheck"></span>

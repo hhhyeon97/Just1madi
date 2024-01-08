@@ -28,9 +28,10 @@ h2 {
 	border-radius: 12px;
 	backdrop-filter: blur(10px);
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	max-width: 400px; /* 유동적인 폭을 제한하기 위해 max-width 추가 */
+    width: 100%; /* 100%로 설정하여 부모의 폭에 맞추기 */
 	padding: 20px;
-	width: 400px;
-	height: 500px;
+	margin: 0 auto; /* 가운데 정렬을 위해 추가 */
 	text-align: center;
 	position: relative;
 }
@@ -49,7 +50,7 @@ h2 {
 }
 
 .form-group input, textarea {
-	width: 80%;
+	width: 80%; /* 100%로 설정하여 부모의 폭에 맞추기 */
 	padding: 8px;
 	box-sizing: border-box;
 	border: 1px solid rgba(206, 212, 218, 0.5);

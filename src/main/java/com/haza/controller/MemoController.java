@@ -309,23 +309,18 @@ public class MemoController {
 
                 userRepository.save(existingUser);
             }
-            
-            
-            //mu.setUsername(username); // 현재 사용자 이름 저장
-            //mu.setPassword(encodedPassword);
-    		 //userRepository.save(mu);// 회원정보 수정
-    		//memoService.updateUser(mu);
     		
+            //알림창 뜨지 않는 이유 ? .. 스크립트 위치 바꿔 보기 
+            /*out.println("<script>");
+            out.println("alert('정보 수정 완료되었습니다! 새로운 비밀번호로 다시 로그인해주세요.');");
+            out.println("location='/';"); // 로그인 페이지로 이동
+            out.println("</script>");*/
+            
             // 세션 로그아웃 처리
             session.invalidate();
             
             return new ModelAndView("redirect:/");
-            
-            /*out.println("<script>");
-            out.println("alert('정보 수정 완료되었습니다!\n새로운 비밀번호로 다시 로그인해주세요.');");
-            out.println("location='/';"); // 로그인 페이지로 이동
-            out.println("</script>");
-            */
+        
 	            }
     }
     	return null;

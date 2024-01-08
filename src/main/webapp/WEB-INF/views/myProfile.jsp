@@ -31,8 +31,8 @@ h2 {
 	backdrop-filter: blur(10px);
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	padding: 20px;
-	width: 350px;
-	height: 450px;
+	max-width: 400px; /* 유동적인 폭을 제한하기 위해 max-width 추가 */
+    width: 100%; 
 	text-align: center;
 	position: relative;
 }
@@ -114,7 +114,7 @@ th {
 			</table>
 			<div>
 				<input type="submit" id="btn1" class="btn btn-white" value="수정"/>
-				 <input type="reset" id="btn2" class="btn btn-white" value="취소" onclick="$('#username').focus();" />
+				 <input type="reset" id="btn2" class="btn btn-white" value="취소" onclick="location='/memo/list';" />
 			</div>
 		</form>
 </div>
@@ -125,22 +125,26 @@ function edit_check(){
 	$password=$.trim($("#password").val());
 	$password2=$.trim($("#password2").val());
 	if($password == ""){
-		alert("비번을 입력하세요!");
+		alert("비밀번호를 입력하세요!");
 		$("#password").val("").focus();
 		return false;
 	}
 	if($password2 == ""){
-		alert("비번확인을 입력하세요!");
+		alert("비밀번호 확인을 입력하세요!");
 		$("#password2").val("").focus();
 		return false;
 	}
 	if($password != $password2){
-		alert("비번이 다릅니다!");
+		alert("비밀번호가 다릅니다!");
 		$("#password").val("");//비번 입력박스를 초기화
 		$("#password2").val("");
 		$("#password").focus();
 		return false;
 	}
+	
+	 // 수정에 성공했을 때 알림창 추가
+    alert("정보 수정이 완료되었습니다!\n새로운 비밀번호로 다시 로그인해주세요.");
+	 
 }//edit_check()
 
 </script>
