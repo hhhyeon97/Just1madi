@@ -18,14 +18,19 @@
 <title>회원가입</title>
 <style>
 
+body{
+	background-image: none;
+	color:fff;
+}
+
 .glassmorphism-container {
 	background-color: rgba(255, 255, 255, 0.6); /* 0.85*/
 	border-radius: 12px;
 	backdrop-filter: blur(10px);
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	padding: 20px;
-	width: 400px;
-	height: 450px;
+	max-width: 400px; /* 유동적인 폭을 제한하기 위해 max-width 추가 */
+    width: 100%; 
 	text-align: center;
 	top: 30px;
 	position: relative;

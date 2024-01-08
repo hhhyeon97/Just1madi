@@ -17,6 +17,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
 <title>memoong</title>
 <style>
+
+body{
+	background-image: none;
+	color:fff;
+}
+
 h2 {
 	font-family: 'yg-jalnan';
 	letter-spacing: 5px;
