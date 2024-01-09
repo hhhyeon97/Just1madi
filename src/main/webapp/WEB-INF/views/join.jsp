@@ -95,7 +95,7 @@
 			</div>
 		</form>
 		<div id="goLogin">
-			<a href="/">이미 회원이신가요 ?</a>
+			<a href="/login">이미 회원이신가요 ?</a>
 		</div>
 	</div>
 </body>

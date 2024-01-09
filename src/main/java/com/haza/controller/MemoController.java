@@ -319,7 +319,7 @@ public class MemoController {
             // 세션 로그아웃 처리
             session.invalidate();
             
-            return new ModelAndView("redirect:/");
+            return new ModelAndView("redirect:/login");
         
 	            }
     }

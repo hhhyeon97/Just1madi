@@ -11,12 +11,16 @@ import com.haza.model.MemoUser;
 
 public class PrincipalDetails implements UserDetails{
 
+
 	
 	private MemoUser user;
+
 
 	public PrincipalDetails(MemoUser user) {
 		this.user = user;
 	}
+
+	
 	
 	/*
 	@Override

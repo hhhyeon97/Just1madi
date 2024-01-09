@@ -31,8 +31,11 @@ public class SecurityConfig {
 	                .anyRequest().permitAll()
 	        		.and()
 	        		.formLogin()
-	        		.loginPage("/")
-	        		.loginProcessingUrl("/loginCheck")
+	        		.loginPage("/login")
+	        		.loginProcessingUrl("/login_ok")
+	        		 .usernameParameter("username")    // 사용자를 찾기 위해 사용할 매개변수
+	                 .passwordParameter("password")
+	        		.failureUrl("/login?error=true")
 	        		.defaultSuccessUrl("/memo/list")
 	                .and()
                     .logout()

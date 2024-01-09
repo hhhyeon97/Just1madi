@@ -32,8 +32,8 @@
 	backdrop-filter: blur(1px);
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	padding: 20px;
-	width: 400px;
-	height: 400px;
+	max-width: 400px;
+	width: 100%;
 	text-align: center;
 	position: relative;
 }
@@ -68,8 +68,13 @@
 </head>
 <body>
 	<div class="glassmorphism-container">
-		<form method="post" name="m" action="/loginCheck">
+		<form method="post" name="m" action="/login_ok">
 			<h2>welcome memoong</h2>
+			<%-- 실패 메시지가 있는 경우에만 표시 --%>
+			<c:if test="${param.error == 'true'}">
+				<div class="alert alert-danger">닉네임이나 비밀번호가 틀립니다!
+				</div>
+			</c:if>
 			<div class="form-group">
 				<label for="username">닉네임</label> <input type="text" id="username"
 					name="username" required>

@@ -2,8 +2,6 @@ package com.haza.controller;
 
 
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -12,8 +10,8 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.haza.model.MemoUser;
 import com.haza.repository.UserRepository;
@@ -21,6 +19,7 @@ import com.haza.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 
 @Controller
@@ -35,8 +34,8 @@ public class IndexController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
-	@GetMapping("/")
-	public String index() {
+	@GetMapping("/login")
+	public String login() {
 		return "index";
 	}
 
@@ -45,8 +44,6 @@ public class IndexController {
 		return "memo";
 	}
 
-	 
-	
 	@GetMapping("/custom-logout")
     public String customLogout(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) {
@@ -58,88 +55,44 @@ public class IndexController {
         return "redirect:/"; // 로그아웃 후 리다이렉트할 페이지
     }
 	
-	
-	@PostMapping("/loginCheck")
-	public String loginCheck(MemoUser user, HttpServletResponse response, HttpServletRequest request) throws Exception {
-		 PrintWriter out = response.getWriter();
-	    // 입력받은 닉네임으로 사용자 정보를 조회
-	    MemoUser dbUser = userRepository.findByUsername(user.getUsername());
-	    if (dbUser == null) {
-	        // 닉네임이 DB에 없는 경우
-	    	 out.println("<script>");
+	/*
+	// 시큐리티 로그인 시도 
+		@PostMapping("/login_ok")
+		public ModelAndView login_ok(String username, String password, HttpServletResponse response, HttpSession session) throws Exception {
+		    response.setContentType("text/html;charset=UTF-8");
+		    PrintWriter out = response.getWriter();
+		    MemoUser mu = this.userRepository.findByUsername(username);
+		    if (mu == null) {
+		        // 가입 안 된 회원 처리
+		        out.println("<script>");
 		        out.println("alert('가입 안 된 회원입니다!');");
 		        out.println("history.back();");
 		        out.println("</script>");
-	        //request.setAttribute("errorMessage", "존재하지 않은 회원입니다.");
-	       // return "index"; // 로그인 페이지로 리다이렉트 또는 원하는 페이지로 이동
-	    } else {
-	        // 닉네임이 DB에 있는 경우, 비밀번호 일치 여부 확인
-	        if (bCryptPasswordEncoder.matches(user.getPassword(), dbUser.getPassword())) {
-	        	return "redirect:/memo/list"; // 로그인 성공 시 이동할 페이지
-	        } else {
-	            // 비밀번호 불일치
-	        	 out.println("<script>");
+		    } else {
+		        // BCryptPasswordEncoder를 사용하여 암호화된 비밀번호를 비교
+		        if (!bCryptPasswordEncoder.matches(password, mu.getPassword())) {
+		            // 비밀번호가 다를 경우 처리
+		            out.println("<script>");
 		            out.println("alert('비밀번호가 다릅니다!');");
 		            out.println("history.go(-1);");
 		            out.println("</script>");
-	           // request.setAttribute("errorMessage", "비밀번호가 일치하지 않습니다.");
-	           // return "index"; // 로그인 페이지로 리다이렉트 또는 원하는 페이지로 이동
-	        }
-	    }
-	    return null;
-	}
-	
-	/*
-	 private void authenticateUserAndSetSession(MemoUser user, HttpServletRequest request) {
-	        String username = user.getUsername();
-	        // 시큐리티에서 사용자의 권한을 설정할 수 있다면 여기서 권한을 설정할 수 있습니다.
-	        // 예: List<GrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
-	        
-	        Authentication authentication = new UsernamePasswordAuthenticationToken(username, null);
-	        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-	        // HttpSession에 인증된 사용자를 저장
-	        request.getSession().setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, SecurityContextHolder.getContext());
-	    }
-	}
+		        } else {
+		            // 로그인 성공 시 처리
+		            session.setAttribute("username", username);
+		            System.out.println("로그인 성공!" + username+"님");
+		            //return new ModelAndView("redirect:/letter/loading");
+		        }
+		    }
+		    return null;
+		}
 	*/
+	
 	
 	@GetMapping("/join")
 	public String join(){
 		return "join";
 	}
 	
-	/*
-	//닉네임 중복검색 시도 01 
-	@PostMapping("/idCheck")
-	public ModelAndView idCheck(String username,HttpServletResponse response)
-			throws Exception{
-		PrintWriter out=response.getWriter();
-		MemoUser db_id = this.userRepository.findByUsername(username);
-		int re=-1;
-		if(db_id != null) {
-			re=1;
-		}
-		out.println(re);
-		return null;
-	}
-	*/
-	
-	// 시도 02 
-	@PostMapping("/idCheck")
-	@ResponseBody
-	public Map<String, Object> idCheck(@RequestParam String username) {
-	    Map<String, Object> result = new HashMap<>();
-	    MemoUser dbUser = userRepository.findByUsername(username);
-
-	    if (dbUser != null) {
-	        result.put("result", "duplicate");
-	    } else {
-	        result.put("result", "available");
-	    }
-
-	    return result;
-	}
 	
 	/*
 	@PostMapping("/join")

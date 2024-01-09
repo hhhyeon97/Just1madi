@@ -1,7 +1,5 @@
-/**
- * 
- */
 
+/*join.jsp 회원가입 공백 유효성 추가*/
 function check() {
     if (m.username.value == 0) {
         alert("닉네임을 입력하세요!");
@@ -26,7 +24,6 @@ function check() {
         }
     }
 }
-
 function id_check() {
     $("#idcheck").hide();
     var username = $.trim($("#username").val());

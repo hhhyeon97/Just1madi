@@ -49,6 +49,8 @@ public class MemoUser {
 	                ", createDate=" + (createDate != null ? createDate.getTime() : null) +
 	                '}';
 	    }
+
+
 	
 
 }
