@@ -1,14 +1,6 @@
 @charset "UTF-8";
 
 @font-face {
-	font-family: 'Cafe24Ohsquare';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-@font-face {
     font-family: 'yg-jalnan';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
     font-weight: normal;
@@ -34,4 +26,14 @@ body {
 	justify-content: center;
 	height: 100vh;
 	margin: 0;
+}
+
+h2 {
+	font-family: 'yg-jalnan';
+	letter-spacing: 5px;
+	margin-bottom: 20px;
+}
+
+.glassmorphism-container h2 {
+	color: #a6bfe0;
 }

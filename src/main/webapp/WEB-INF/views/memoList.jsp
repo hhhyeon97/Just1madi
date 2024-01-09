@@ -5,15 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, user-scalable=no, 
-  maximum-scale=1.0, minimum-scale=1.0">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <title>메모 리스트</title>
@@ -23,13 +21,6 @@ body{
 	background-color: white;
 	background-image: none;
 }
-
-h2,h3 {
-	font-family: 'yg-jalnan';
-	letter-spacing: 5px;
-	margin-bottom: 20ppx;
-}
-
 .glassmorphism-container {
     background-color: rgba(255, 255, 255, 0.6);
     border-radius: 12px;
@@ -45,7 +36,7 @@ h2,h3 {
     margin-top: 20px;
     margin-bottom: 20px;
 }
-.glassmorphism-container h2,h3 {
+.glassmorphism-container h2{
 	color: #a6bfe0;	
 	margin-bottom: 15px;
 	margin-top: 20px;
@@ -54,12 +45,10 @@ h2,h3 {
 	margin-top: 20px;
 	margin-bottom: 15px;
 }
-
 .form-group label {
 	display: block;
 	margin-bottom: 5px;
 }
-
 .form-group input, textarea {
 	width: 80%;
 	padding: 8px;
@@ -69,7 +58,6 @@ h2,h3 {
 	background-color: rgba(255, 255, 255, 0.1);
 	color: #495057;
 }
-
 #memobtn {
 	letter-spacing : 3px;
 	position: relative;
@@ -78,17 +66,14 @@ h2,h3 {
 	cursor: pointer;
 	margin-bottom: 30px;
 }
-
 #memobtn:hover{
 	background-color:#a6bfe0;
 	border:1px solid #a6bfe0;
 }
-
 a {
 	text-decoration: none;
 	color: inherit;
 }
-
 table {
 	width: 100%;
 	margin-bottom: 20px;
@@ -97,12 +82,10 @@ table {
 	align-items: center;
 	margin-top: 15px;
 }
-
 td {
 	padding: 20px;
 	text-align: left;
 }
-
 #cusbtn {
 	background-color: white;
 	border: 1px solid lightgray;
@@ -113,7 +96,6 @@ td {
 	border: 1px solid lightgray;
 	border-radius: 7px;
 }
-
 #menuicon {
 	position: relative;
 	left: 160px;
@@ -121,7 +103,6 @@ td {
 	color: #a6bfe0;
 	font-size: 24px;
 }
-
 #menuContainer {
 	display: none;
 	position: absolute;
@@ -132,7 +113,6 @@ td {
 	padding: 10px;
 	border-radius: 10px;
 }
-
 #menuContainer a {
 	display: block;
 	margin-bottom: 2px;
@@ -151,8 +131,7 @@ td {
 </style>
 </head>
 <body>
-
-	<script>
+<script>
 document.addEventListener("DOMContentLoaded", function () {
     var menuContainer = document.getElementById("menuContainer");
     var menuButton = document.getElementById("menuButton");
@@ -167,37 +146,29 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 	<div class="glassmorphism-container">
-		<!--<h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAARxJREFUSEvVlNENwjAMRN1NYBOYBJgEmAQ2oZvAJtAnxVIanFxU1A8i5aOJes++2B5s5TWsrG+9gI2Z3cxsZ2avtK/T96gC7AEck3ipBehuZoCqSwGI+JH+viQxsjlMZ3wDObUyUQBsIQMXzyP1zLBpX0tBAZ6TDUS8TdHmOpxzTxbch+sXAILvpFrVUQD85x0ii87pnIfmHRZlkNvgFZM/MqL4Xy1XlQECHmkUIZEDXlym/uOqjaaatXmvLMIeHpldLh8Z+F/t5hoAQZoMa3pWtaMjQD4eWqMAONuzDCsqAnj3Nus7S6ucTbOuLgFd8yXwLK+yWVOWAB9usr4DiFs7G34loDXc1GOHw68EyOElKF//qz5QUcv7/wd8AKJNRBl0Vm5MAAAAAElFTkSuQmCC"/> ${pageContext.request.userPrincipal.name}</h3>-->
 		<h2>Memo List</h2>
-		<!--<span id="username">${loggedInUsername}</span>-->
-		<!--<span id="username">${sessionScope.loggedInUsername}</span>-->
-		<!--<a href="<c:url value='/logout' />">로그아웃테스트1</a>-->
 		<div id="menuContainer">
 			<a href="/memo/myProfile">정보수정</a> <a href="/custom-logout">logout</a>
 		</div>
-		<a href="javascript:void(0);" id="menuButton"> 
-		<!--<img id="menuicon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAFtJREFUSEtjZKAxYKSx+QyjFhAM4QEJov9QZ8Esh/EJuhZNH5iLzQc0t4BYlxKlbkDigCiXEatoQOJgNJJRomdAUhHN44DmFhCbxIlSNyBxQJTLiFU06gOCIQUAArwMGUsaCXEAAAAASUVORK5CYII=" />
-		-->
-		<i id="menuicon" class='bx bx-menu'></i>
+		<a href="javascript:void(0);" id="menuButton"> <i id="menuicon"
+			class='bx bx-menu'></i>
 		</a>
 		<table>
 			<tbody>
 				<!-- 메모 목록 순회 -->
 				<c:forEach var="memo" items="${memoList}" varStatus="status">
 					<tr>
-						<td>
-							<!--<a href="<c:url value='/memo/detail/${memo.memoId}'/>">${memo.content}</a>-->
-							<a href="<c:url value='/memo/detail/${memo.memoId}'/>">${memo.shortContent}<hr></a>
-							 <!-- <a href="#" class="memo-preview" data-memo-id="${memo.memoId}" data-toggle="modal" data-target="#memoModal">${memo.shortContent}</a> -->
+						<td><a href="<c:url value='/memo/detail/${memo.memoId}'/>">${memo.shortContent}</a>
+						<hr>
 						</td>
-						<td><input type="button" id="cusbtn2" class="btn btn-white" value="Edit"
-							onclick="location='/memo/edit/${memo.memoId}';"></td>
+						<td><input type="button" id="cusbtn2" class="btn btn-white"
+							value="Edit" onclick="location='/memo/edit/${memo.memoId}';"></td>
 						<td>
 							<form method="post"
 								action="<c:url value='/memo/delete/${memo.memoId}' />"
 								style="display: inline;">
-								<input type="submit" id="cusbtn" class="btn btn-white" value="Delete"
-									onclick="return confirm('정말 삭제하시나요?');" />
+								<input type="submit" id="cusbtn" class="btn btn-white"
+									value="Delete" onclick="return confirm('정말 삭제하시나요?');" />
 							</form>
 						</td>
 					</tr>
@@ -205,9 +176,10 @@ document.addEventListener("DOMContentLoaded", function () {
 			</tbody>
 		</table>
 		<div class="form-group">
-			<input type="button" id="memobtn" value="memo" class="btn btn-secondary"
-				onclick="location='/memo/create';">
+			<input type="button" id="memobtn" value="memo"
+				class="btn btn-secondary" onclick="location='/memo/create';">
 		</div>
 	</div>
+</body>
 </body>
 </html>

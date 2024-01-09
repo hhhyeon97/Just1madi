@@ -44,29 +44,7 @@ public class IndexController {
 	public @ResponseBody String memo() {
 		return "memo";
 	}
-	
-	
-	/*
-	@PostMapping("/login_ok")
-	public String login_ok() {
-		return "redirect:/memo";
-	}
-	*/	
 
-	/*
-	 @PostMapping("/checkUsername")
-	    @ResponseBody
-	    public ResponseEntity<String> isUsernameExists(@RequestParam("username") String username) {
-	        // 중복 체크 로직을 서비스에서 수행
-	        boolean isExists = userService.isUsernameExists(username);
-
-	        if (isExists) {
-	            return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already exists");
-	        } else {
-	            return ResponseEntity.ok("Username is available");
-	        }
-	    }
-	 */
 	 
 	
 	@GetMapping("/custom-logout")
@@ -80,16 +58,9 @@ public class IndexController {
         return "redirect:/"; // 로그아웃 후 리다이렉트할 페이지
     }
 	
-	/*
-	@GetMapping("/login")
-	public  String login() {
-		return "redirect:/memo/list";
-	}
-	*/
-	
 	
 	@PostMapping("/loginCheck")
-	public String login(MemoUser user, HttpServletResponse response, HttpServletRequest request) throws Exception {
+	public String loginCheck(MemoUser user, HttpServletResponse response, HttpServletRequest request) throws Exception {
 		 PrintWriter out = response.getWriter();
 	    // 입력받은 닉네임으로 사용자 정보를 조회
 	    MemoUser dbUser = userRepository.findByUsername(user.getUsername());
