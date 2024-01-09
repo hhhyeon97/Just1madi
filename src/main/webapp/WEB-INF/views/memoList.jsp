@@ -17,7 +17,6 @@
 <title>메모 리스트</title>
 <style>
 body{
-	height:auto;
 	background-color: white;
 	background-image: none;
 }
@@ -35,6 +34,9 @@ body{
     overflow-y: auto; /* 내용이 많아지면 스크롤이 생기도록 설정 */
     margin-top: 20px;
     margin-bottom: 20px;
+    max-height:700px;
+    height:auto;
+    
 }
 .glassmorphism-container h2{
 	color: #a6bfe0;	
@@ -155,6 +157,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		</a>
 		<table>
 			<tbody>
+				<c:if test="${empty memoList}"> <!-- 메모리스트가 없을 때  -->
+						<p style="color:gray;">memoong에 접속중<br>‧˚⋆﻿⁽ '-' ⁾⋆﻿˚‧</p>
+				</c:if>
+				<c:if test="${not empty memoList}">
 				<!-- 메모 목록 순회 -->
 				<c:forEach var="memo" items="${memoList}" varStatus="status">
 					<tr>
@@ -173,6 +179,7 @@ document.addEventListener("DOMContentLoaded", function () {
 						</td>
 					</tr>
 				</c:forEach>
+				</c:if>
 			</tbody>
 		</table>
 		<div class="form-group">
