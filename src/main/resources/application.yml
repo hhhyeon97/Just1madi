@@ -6,7 +6,14 @@ server:
       charset: UTF-8
       enabled: true
       force: true
-      
+
+  error:
+    path: /error            
+    #include-exception: true
+    #include-message: always
+    #include-binding-errors: always
+    #include-stacktrace: always
+    
 spring:
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
@@ -26,3 +33,4 @@ spring:
        naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
+

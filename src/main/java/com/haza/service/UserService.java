@@ -21,6 +21,13 @@ public class UserService {
 		return null;
 	}
 
+
+	public MemoUser idCheck(String username) {
+		System.out.println(" \n ===============> 아이디 중복 검색(JPA)");
+		    MemoUser member = userRepository.findByUsername(username);
+		    return member;
+	}
+
 	 /*public boolean isUsernameExists(String username) {
 	        // 닉네임이 이미 존재하는지 확인
 	        Optional<MemoUser> existingMember = userRepository.findByUsername(username);

@@ -59,6 +59,7 @@
 	background-color: #fff;
 	padding: 5px 10px;
 	display: inline-block;
+	margin-right: 20px;
 }
 #checkbtn:hover {
 	background-color: #a6bfe0;
@@ -75,7 +76,7 @@
 </head>
 <body>
 	<div class="glassmorphism-container">
-		<form name="m" method="post" action="join">
+		<form name="m" method="post" action="/join">
 			<h2>회 원 가 입</h2>
 			<div class="form-group">
 				<label for="username">닉네임</label> <input type="text" id="username"
@@ -89,7 +90,7 @@
 			</div>
 			<div id="buttondiv">
 				<label for="btn1"></label> <input type="submit" value="가입" id="btn1"
-					class="cusbtn" onclick="check()" />&nbsp;&nbsp;&nbsp; <label
+					class="cusbtn" onclick="join_check()" /><label
 					for="btn2"></label> <input type="reset" value="취소" id="btn2"
 					class="cusbtn" onclick="document.m.reset(); m.username.focus();" />
 			</div>

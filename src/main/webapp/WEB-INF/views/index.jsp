@@ -72,7 +72,7 @@
 			<h2>welcome memoong</h2>
 			<%-- 실패 메시지가 있는 경우에만 표시 --%>
 			<c:if test="${param.error == 'true'}">
-				<div class="alert alert-danger">닉네임이나 비밀번호가 틀립니다!
+				<div class="alert alert-danger">회원이 아니거나 비밀번호가 틀립니다!
 				</div>
 			</c:if>
 			<div class="form-group">

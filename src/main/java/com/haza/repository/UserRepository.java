@@ -16,6 +16,6 @@ public interface UserRepository extends JpaRepository<MemoUser, Integer>{
 
 	public List<Memo> findByUsername(MemoUser username);
 
-	// Optional<MemoUser> findByUsername(String username);
+	//public Optional<MemoUser> findByUsername(String username);
 	
 }

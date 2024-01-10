@@ -118,7 +118,16 @@ public class IndexController {
 	}
 */
 	
+	@PostMapping("/idCheck")
+	public void idCheck(String username, HttpServletResponse response) throws Exception {
+	    PrintWriter out = response.getWriter();
+	    MemoUser existingMember = this.userService.idCheck(username);
+	    int result = (existingMember != null) ? 1 : -1;
+	    out.println(result);
+	}
 	
+	
+	/*
 	@PostMapping("/join")
 	public String join(MemoUser user, HttpServletRequest request) {
 	    // 중복 닉네임 체크
@@ -141,25 +150,23 @@ public class IndexController {
 
 	    return "redirect:/";
 	}
-
+*/
 	
 	
-	/*
+	
 	@PostMapping("/join")
 	public String join(MemoUser user, HttpServletRequest request) {
 		System.out.println("user ============\n"+user);
 		user.setRole("ROLE_USER");
-		
 		String rawPassword = user.getPassword();
 		String encPassword = bCryptPasswordEncoder.encode(rawPassword);
 		user.setPassword(encPassword);
-		
-		request.setAttribute("message", "회원가입을 축하합니다 !");
+		//request.setAttribute("message", "회원가입을 축하합니다 !");
 		userRepository.save(user);
 		
 		return "redirect:/";
 	}
-	*/
+	
 
 	
 	
