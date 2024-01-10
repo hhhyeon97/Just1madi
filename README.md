@@ -8,28 +8,33 @@
 
 <H3>⚙️ 환경 설정</H3>
 
-- **IDE:** Spring Tool Suite (STS) 4.21.0
-- **서버:** Apache Tomcat 10.1.17
-- **데이터베이스:** Oracle 21
-- **데이터베이스 클라이언트:** SQL Developer 19.2.1
-- **자바 개발 키트:** JDK 17
-- **프레임워크:** Spring Boot
+- **IDE :** Spring Tool Suite (STS) 4.21.0
+- **서버 :** Apache Tomcat 10.1.17
+- **데이터베이스 :** Oracle 21
+- **데이터베이스 클라이언트 :** SQL Developer 19.2.1
+- **자바 개발 키트 :** JDK 17
+- **프레임워크 :** Spring Boot
+
+<BR>
 
 <H3>🛠️ 기술 스택</H3>
 
-- **Spring 프레임워크:**
+- **Spring 프레임워크 :**
   - Spring Security
   - Spring Data JPA
   - Spring MVC
 
-- **웹 개발:**
+- **웹 개발 :**
   - JSTL
   - AJAX
 
-- **프론트엔드:**
+- **프론트엔드 :**
   - HTML
   - CSS
   - JavaScript
+
+<BR>
+
  
 ## 프로젝트 실행 방법
 
@@ -40,7 +45,22 @@
 
 ## 데이터베이스 설정
 
-프로젝트에서 사용하는 데이터베이스 설정에 대한 내용을 기술하세요.
+memoong 프로젝트에서는 Oracle 21 데이터베이스를 사용하였습니다.<br>
+아래는 데이터베이스 연결에 필요한 정보입니다.
+
+- **데이터베이스 버전 :** Oracle 21
+- **데이터베이스 사용자명 :** potato
+- **데이터베이스 비밀번호 :** 123456
+- **데이터베이스 주소 :** jdbc:oracle:thin:@localhost:1521:xe
+
+### 데이터베이스 계정 생성 스크립트
+
+프로젝트에서 사용하는 데이터베이스 계정을 생성하기 위한 SQL 스크립트입니다.
+
+```sql
+CREATE USER [사용자명] IDENTIFIED BY [비밀번호];
+GRANT CONNECT, RESOURCE TO [사용자명];
+```
 
 ## 주요 기능
 
