@@ -15,6 +15,12 @@
 <script type="text/javascript" src="resources/js/join.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="icon"
+	href="<%=request.getContextPath()%>/resources/images/favicon.png"
+	type="image/x-icon">
+<link rel="shortcut icon"
+	href="<%=request.getContextPath()%>/resources/images/favicon.png"
+	type="image/x-icon">
 <title>회원가입</title>
 <style>
 .glassmorphism-container {
@@ -81,7 +87,7 @@
 			<div class="form-group">
 				<label for="username">닉네임</label> <input type="text" id="username"
 					name="username" required> <input type="button"
-					value="닉네임체크" id="checkbtn" class="btn btn-dark"
+					value="닉네임체크" id="checkbtn" class="btn btn-secondary"
 					onclick="id_check();"> <br> <span id="idcheck"></span>
 			</div>
 			<div class="form-group">

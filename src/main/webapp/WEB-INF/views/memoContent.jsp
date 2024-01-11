@@ -14,6 +14,12 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+<link rel="icon"
+	href="<%=request.getContextPath()%>/resources/images/favicon.png"
+	type="image/x-icon">
+<link rel="shortcut icon"
+	href="<%=request.getContextPath()%>/resources/images/favicon.png"
+	type="image/x-icon">
 <title>메모 내용</title>
 <style>
 .glassmorphism-container {
@@ -35,6 +41,7 @@
 	max-width: 300px; /* 원하는 최대 너비로 조절 */
 }
 .glassmorphism-container h2 {
+	font-size: 25px;
 	color: #a6bfe0;
 	margin-bottom: 30px;
 }

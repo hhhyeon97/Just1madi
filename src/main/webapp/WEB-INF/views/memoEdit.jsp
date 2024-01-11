@@ -11,6 +11,12 @@
 	crossorigin="anonymous">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+<link rel="icon"
+	href="<%=request.getContextPath()%>/resources/images/favicon.png"
+	type="image/x-icon">
+<link rel="shortcut icon"
+	href="<%=request.getContextPath()%>/resources/images/favicon.png"
+	type="image/x-icon">
 <title>메모 수정</title>
 <style>
 .glassmorphism-container {
