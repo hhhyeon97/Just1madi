@@ -101,7 +101,7 @@ GRANT CONNECT, RESOURCE TO [사용자명];
 - UI
 
 ![화면 캡처 2024-01-11 233204](https://github.com/hhhyeon97/memoong/assets/148893126/8c465f22-b852-4d96-b71c-f87c8fc9edd9)
-![화면 캡처 2024-01-11 233428](https://github.com/hhhyeon97/memoong/assets/148893126/d272d691-635c-4cfe-b8ea-130df8b09a08)
+![화면 캡처 2024-01-11 235015](https://github.com/hhhyeon97/memoong/assets/148893126/78a86ae8-18e1-49bb-964b-dcb252c73550)
 
 ![화면 캡처 2024-01-11 233230](https://github.com/hhhyeon97/memoong/assets/148893126/46a89b02-dff3-49a9-a7e0-82acd4af3900)
 ![화면 캡처 2024-01-11 233320](https://github.com/hhhyeon97/memoong/assets/148893126/a56e1507-5d6c-4389-aaf8-6e11a9d1a5de)
