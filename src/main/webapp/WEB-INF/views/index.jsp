@@ -90,5 +90,16 @@
 			</div>
 		</form>
 	</div>
+<script>
+    $(document).ready(function () {
+        // 에러 메시지가 있을 경우 username 입력란에 포커스를 맞춤
+        var isError = ${param.error == 'true'};
+
+        if (isError) {
+            // username 입력란의 ID를 여러분의 코드에 맞게 수정하세요
+            $('#username').focus();
+        }
+    });
+</script>
 </body>
 </html>
