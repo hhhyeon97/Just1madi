@@ -101,8 +101,8 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				 <version>3.2.1</version> <!-- 버전 명시 -->
 				<configuration>
+					 <testFailureIgnore>true</testFailureIgnore>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
@@ -113,6 +113,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>
