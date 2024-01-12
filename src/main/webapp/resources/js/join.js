@@ -37,7 +37,7 @@ function id_check(){
 	$("#idcheck").hide();
 	$username=$.trim($("#username").val());
 	if($username.length < 4){
-		$newtext='<font color="red" size="3"><b>아이디는 4자 이상이어야 합니다.</b></font>';
+		$newtext='<font color="red" size="3"><b>닉네임은 4자 이상이어야 합니다.</b></font>';
 		$("#idcheck").text('');
 		$("#idcheck").show();
 		$("#idcheck").append($newtext);
@@ -45,7 +45,7 @@ function id_check(){
 		return false;
 	};
 	if($username.length > 12){
-		$newtext='<font color="red" size="3"><b>아이디는12자 이하이어야 합니다.</b></font>';
+		$newtext='<font color="red" size="3"><b>닉네임은 12자 이하이어야 합니다.</b></font>';
 		$("#idcheck").text('');
 		$("#idcheck").show();
 		$("#idcheck").append($newtext);
@@ -53,7 +53,7 @@ function id_check(){
 		return false;
 	};
 	if(!(validate_username($username))){
-		$newtext='<font color="red" size="3"><b>아이디는  영문 소문자, 숫자,<br>한글, 밑줄(_) 조합만 가능합니다.</b></font>';
+		$newtext='<font color="red" size="3"><b>닉네임은 영문 소문자, 숫자,<br>한글, 밑줄(_) 조합만 가능합니다.</b></font>';
 		$("#idcheck").text('');
 		$("#idcheck").show();
 		$("#idcheck").append($newtext);
