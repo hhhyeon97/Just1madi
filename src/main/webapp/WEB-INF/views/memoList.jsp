@@ -38,10 +38,9 @@ body{
     text-align: center;
     position: relative;
     overflow-y: auto; /* 내용이 많아지면 스크롤이 생기도록 설정 */
-    margin-top: 20px;
-    margin-bottom: 20px;
-    max-height:700px;
-    height:auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    max-height:500px;
     
 }
 .glassmorphism-container h2{
@@ -88,7 +87,7 @@ table {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top: 15px;
+	margin-top: 35px;
 }
 td {
 	padding: 20px;
@@ -104,21 +103,31 @@ td {
 	border: 1px solid lightgray;
 	border-radius: 7px;
 }
+
+@media screen and (max-width: 768px){
+
+#menuContainer {
+	padding: 8px;
+}
+
+}
+
+
 #menuicon {
 	position: relative;
-	left: 160px;
+	left: 150px;
 	bottom: 45px;
 	color: #a6bfe0;
-	font-size: 24px;
+	font-size: 27px;
 }
 #menuContainer {
 	display: none;
 	position: absolute;
-	top: 40px; /* 메뉴가 위치할 상대적인 높이 조절 */
-	right: 0;
+	top: 45px; /* 메뉴가 위치할 상대적인 높이 조절 */
+	right: 10px;
 	background-color: #fff; /* 메뉴 배경 색상 */
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
-	padding: 10px;
+	padding: 15px;
 	border-radius: 10px;
 }
 #menuContainer a {
@@ -127,15 +136,22 @@ td {
 	text-decoration: none;
 	color: #333; /* 메뉴 텍스트 색상 */
 	
-	transition: color 0.4s; /* 색상 변경 시 부드러운 전환 효과 */
+	transition: color 0.3s; /* 색상 변경 시 부드러운 전환 효과 */
     padding: 8px; /* 링크의 내부 여백 설정 */
 
     /* 배경색과 마우스를 올렸을 때의 스타일 변경 */
     &:hover {
         color: #fff; /* 마우스를 올렸을 때의 텍스트 색상 */
         background-color: #a6bfe0; /* 마우스를 올렸을 때의 배경색 */
+        border-radius: 4px;
     }
 }
+
+/* 수정된 부분: 아이콘과 텍스트 사이에 간격 추가 */
+#menuContainer a:first-child {
+	margin-top: 10px;
+}
+
 </style>
 </head>
 <body>
@@ -158,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		<div id="menuContainer">
 			<a href="/memo/myProfile">정보수정</a> <a href="/custom-logout">logout</a>
 		</div>
-		<a href="javascript:void(0);" id="menuButton"> <i id="menuicon"
+		<a href="javascript:void(0);" id="menuButton"><i id="menuicon"
 			class='bx bx-menu'></i>
 		</a>
 		<table>
