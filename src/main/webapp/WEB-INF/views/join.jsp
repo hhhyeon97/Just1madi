@@ -54,6 +54,7 @@
 	border-radius: 4px;
 	background-color: rgba(255, 255, 255, 0.1);
 	color: #495057;
+	outline-color: #e6eaeb;
 }
 #buttondiv {
 	margin-top: 50px;
@@ -67,6 +68,19 @@
 	display: inline-block;
 	margin-right: 20px;
 }
+#checkbtn{
+	margin-bottom : 10px;
+	margin-top: 5px;
+}
+
+/* 활성 상태일 때 배경색을 green으로 설정 */
+#checkbtn:focus,
+#checkbtn:active {
+    background-color: #a6bfe0;
+    border: none;
+    outline: none;
+}
+
 #checkbtn:hover {
 	background-color: #a6bfe0;
 	border: 1px solid #a6bfe0;
@@ -78,6 +92,7 @@
 	color: #a6bfe0;
 	text-underline-offset: 5px;
 }
+
 </style>
 </head>
 <body>
@@ -87,7 +102,7 @@
 			<div class="form-group">
 				<label for="username">닉네임</label> <input type="text" id="username"
 					name="username" required> <input type="button"
-					value="닉네임체크" id="checkbtn" class="btn btn-secondary"
+					value="닉네임 체크" id="checkbtn" class="btn btn-secondary"
 					onclick="id_check();"> <br> <span id="idcheck"></span>
 			</div>
 			<div class="form-group">

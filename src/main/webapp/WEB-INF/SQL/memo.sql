@@ -3,9 +3,9 @@
 -- 1/1 
 
 select * from MemoUser order by createdate desc;
-delete from MemoUser;
+delete from MemoUser where username='test001';
 select * from Memo order by memoId desc;
-delete from Memo where memoId=81;
+delete from Memo where memoId=214;
 drop table Memo;
 commit;
 

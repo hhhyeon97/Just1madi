@@ -67,7 +67,7 @@ function id_check(){
         datatype:"int",
         success: function (data) {
       	  if(data==1){//중복 닉네임이 있다면
-      		$newtext='<font color="red" size="3"><b>중복 닉네임 입니다.</b></font>';
+      		$newtext='<font color="#f0b9d6" size="3"><b>중복 닉네임 입니다.</b></font>';
       		$("#idcheck").text('');
         	$("#idcheck").show();
         	$("#idcheck").append($newtext);          		
@@ -75,7 +75,7 @@ function id_check(){
           	 console.log("중복 닉네임 입니다!");
           	return false;
       	  }else{//중복 닉네임이 아니면
-      		$newtext='<font color="blue" size="3"><b>사용 가능한 닉네임 입니다.</b></font>';
+      		$newtext='<font color="#9bbfeb" size="3"><b>사용 가능한 닉네임 입니다.</b></font>';
       		$("#idcheck").text('');
       		$("#idcheck").show();
       		$("#idcheck").append($newtext);
