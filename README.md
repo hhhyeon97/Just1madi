@@ -4,7 +4,6 @@
 </div>
 
 <br>
-<br>
 
 <H3>⚙️ 환경 설정</H3>
 
@@ -15,7 +14,6 @@
 - **자바 개발 키트 :** JDK 17
 - **프레임워크 :** Spring Boot
 
-<BR>
 
 <H3>🛠️ 기술 스택</H3>
 
@@ -32,18 +30,15 @@
   - HTML
   - CSS
   - JavaScript
-
-<BR>
-
+<br>
  
 ## 프로젝트 실행 방법
 
-1. IDE에서 프로젝트를 엽니다.
+1. clone 후 IDE에서 프로젝트를 엽니다.
 2. 데이터베이스 연결 설정을 확인하고 필요한 경우 수정합니다.
-3. Tomcat 서버를 구동합니다.
-4. 브라우저에서 `http://localhost:포트번호`으로 접속하여 확인합니다.
+3. Boot Dashboard에서 프로젝트를 시작합니다.
+4. 브라우저에서 `localhost:포트번호`로 접속하여 확인합니다.
 
-<BR>
 
 ## 데이터베이스 설정
 
@@ -55,7 +50,6 @@ memoong 프로젝트에서는 Oracle 21 데이터베이스를 사용하였습니
 - **데이터베이스 비밀번호 :** 123456
 - **데이터베이스 주소 :** jdbc:oracle:thin:@localhost:1521:xe
   
-<BR>
 
 ### 데이터베이스 계정 생성 스크립트
 
@@ -65,7 +59,12 @@ memoong 프로젝트에서는 Oracle 21 데이터베이스를 사용하였습니
 CREATE USER [사용자명] IDENTIFIED BY [비밀번호];
 GRANT CONNECT, RESOURCE TO [사용자명];
 ```
-<BR>
+
+<hr>
+
+### 🎥 시연 gif
+
+
 
 
 
@@ -73,7 +72,7 @@ GRANT CONNECT, RESOURCE TO [사용자명];
 
 ### 📃 로그인/회원가입
 
-- UI
+<br>
 
 ![화면 캡처 2024-01-11 230654](https://github.com/hhhyeon97/memoong/assets/148893126/56c2654b-c2fa-4b73-8a9a-06433593c99d)
 ![화면 캡처 2024-01-11 230608](https://github.com/hhhyeon97/memoong/assets/148893126/0bdab91d-5455-4431-b164-d9c508ae47b0)
@@ -104,7 +103,7 @@ GRANT CONNECT, RESOURCE TO [사용자명];
 
 ### 📃 메모장 CRUD 기능
 
-- UI
+<br/>
 
 ![화면 캡처 2024-01-11 233204](https://github.com/hhhyeon97/memoong/assets/148893126/8c465f22-b852-4d96-b71c-f87c8fc9edd9)
 ![화면 캡처 2024-01-11 235015](https://github.com/hhhyeon97/memoong/assets/148893126/78a86ae8-18e1-49bb-964b-dcb252c73550)
@@ -112,9 +111,9 @@ GRANT CONNECT, RESOURCE TO [사용자명];
 ![화면 캡처 2024-01-11 233230](https://github.com/hhhyeon97/memoong/assets/148893126/46a89b02-dff3-49a9-a7e0-82acd4af3900)
 ![화면 캡처 2024-01-11 233320](https://github.com/hhhyeon97/memoong/assets/148893126/a56e1507-5d6c-4389-aaf8-6e11a9d1a5de)
 
+<br>
 
-
-- **메모 작성**
+**메모 작성**
 
 목적: 사용자가 새로운 메모를 작성할 수 있습니다.<br>
 
@@ -125,7 +124,7 @@ GRANT CONNECT, RESOURCE TO [사용자명];
 
 <br>
 
-- **메모 조회**
+**메모 조회**
 
 목적: 사용자는 작성된 메모 목록을 확인할 수 있습니다.<br>
 
@@ -137,7 +136,7 @@ GRANT CONNECT, RESOURCE TO [사용자명];
 
 <br>
 
-- **메모 수정**
+**메모 수정**
 
 목적: 사용자가 이전에 작성한 메모를 수정할 수 있습니다.<br>
 
@@ -148,7 +147,7 @@ GRANT CONNECT, RESOURCE TO [사용자명];
 
 <br>
 
-- **메모 삭제**
+**메모 삭제**
 
 목적: 사용자가 더 이상 필요하지 않는 메모를 삭제할 수 있습니다.<br>
 
@@ -157,11 +156,9 @@ GRANT CONNECT, RESOURCE TO [사용자명];
 - 사용자는 삭제하고자 하는 메모를 선택하여 삭제 요청을 합니다.<br>
 - 시스템은 해당 메모를 삭제할 때 한 번 더 삭제할 지 알림창을 띄워 알려줍니다.<br>
 
- <br/>
 
 ### 📃 회원정보 수정 기능
-
-- UI
+<br>
 
 ![화면 캡처 2024-01-11 233343](https://github.com/hhhyeon97/memoong/assets/148893126/5c8fd9ed-8129-4bd8-ad2d-adacd18c718d)
 
@@ -175,16 +172,7 @@ GRANT CONNECT, RESOURCE TO [사용자명];
 - 사용자에게 수정 성공 메시지를 제공하며 업데이트한 정보로 로그인을 다시 요청합니다.<br>
 
 
-### 🎥 시연 gif
-
-![memolist](https://github.com/hhhyeon97/memoong/assets/148893126/843f933f-8d53-461d-9c9c-6628fa37cd0f)
-
-<br>
-<BR>
-
 ## 기타 문서
-
-<BR>
 
 ### **1. MVP**
 
@@ -215,12 +203,9 @@ Memoong 프로젝트는 사용자가 메모를 작성하고 관리할 수 있는
 
  **향후 계획**
 
-- **모바일 최적화 작업** : 다양한 모바일 환경에서 실행시 화면 깨지지 않게 수정
+- **모바일 최적화 작업** : 반응형 고려하여 수정 진행하기
 - **메모 검색 기능 :** 메모 내용을 검색할 수 있는 기능 추가 예정
-- **배포 :** 배포 진행 후 url 공유 
 
-
-<BR>
 
 ### **2. ERD**
 
