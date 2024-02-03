@@ -21,7 +21,6 @@
 	</properties>
 	
 	
-	
 	<dependencies>
 			<!-- jsp -->
 		<dependency>
@@ -30,16 +29,12 @@
 			<scope>provided</scope>
 		</dependency>
 		
-
-		
-		
 		<dependency>
 			<groupId>jakarta.servlet.jsp.jstl</groupId>
 			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
 			<version>3.0.0</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
 		<dependency>
 			<groupId>jakarta.servlet</groupId>
 			<artifactId>jakarta.servlet-api</artifactId>
@@ -47,13 +42,11 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl -->
 		<dependency>
 			<groupId>org.glassfish.web</groupId>
 			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
 			<version>3.0.1</version>
 		</dependency>
-		
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -112,6 +105,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
-	</build>
+</build>
 
 </project>

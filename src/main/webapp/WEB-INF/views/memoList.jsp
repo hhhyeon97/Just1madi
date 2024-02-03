@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		<table>
 			<tbody>
 				<c:if test="${empty memoList}"> <!-- 메모리스트가 없을 때  -->
-						<p style="color:gray;">memoong에 접속중<br>‧˚⋆﻿⁽ '-' ⁾⋆﻿˚‧</p>
+						<p style="color:gray;">memoong에 접속했습니다<br>‧˚⋆﻿⁽ '-' ⁾⋆﻿˚‧</p>
 				</c:if>
 				<c:if test="${not empty memoList}">
 				<!-- 메모 목록 순회 -->
