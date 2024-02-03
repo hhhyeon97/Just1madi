@@ -48,8 +48,7 @@ memoong 프로젝트에서는 Oracle 21 데이터베이스를 사용하였습니
 - **데이터베이스 버전 :** Oracle 21
 - **데이터베이스 사용자명 :** potato
 - **데이터베이스 비밀번호 :** 123456
-- **데이터베이스 주소 :** jdbc:oracle:thin:@localhost:1521:xe
-  
+- **데이터베이스 주소 :** jdbc:oracle:thin:@localhost:1521:xe<br>
 
 ### 데이터베이스 계정 생성 스크립트
 
@@ -59,12 +58,11 @@ memoong 프로젝트에서는 Oracle 21 데이터베이스를 사용하였습니
 CREATE USER [사용자명] IDENTIFIED BY [비밀번호];
 GRANT CONNECT, RESOURCE TO [사용자명];
 ```
+<br>
 
-<hr>
+## 🎥 시연 gif
 
-### 🎥 시연 gif
-
-
+![메뭉시연01](https://github.com/hhhyeon97/memoong/assets/148893126/3eca08da-3a47-4174-9183-2870797ee618)
 
 
 
