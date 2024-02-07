@@ -52,14 +52,7 @@ public class MemoService {
 	            System.out.println("메모 저장 성공!");
 	        }
 	    }
-	    
-	   /* 
-	    public List<Memo> getUserMemos(String username) {
-	    	MemoUser user = principalDetailsService.findByUsername(username);
-	        return user != null ? user.getMemos() : new ArrayList<>();
-	    }
-*/
-	    
+   
 	    public List<Memo> getUserMemos(String username) {
 	        MemoUser user = principalDetailsService.findByUsername(username);
 	        List<Memo> memos = user != null ? user.getMemos() : new ArrayList<>();
@@ -69,28 +62,17 @@ public class MemoService {
 
 	        return memos;
 	    }
-
-	    
-	    /*
-		public void updateUser(MemoUser mu) {
-			
-			 // 기존 사용자 레코드를 찾아오기
-	        MemoUser existingUser = userRepository.findByUsername(mu.getUsername());
-
-	       
-	        // 중복된 닉네임이 있는 경우
-	        if (existingUser != null && !existingUser.getUserNo().equals(mu.getUserNo())) {
-	            // 사용자에게 알리고 입력을 다시 받도록 처리
-	            throw new DuplicateUsernameException("중복된 닉네임입니다. 다른 닉네임을 입력해주세요.");
-	        }
-
-	        // 중복된 닉네임이 없는 경우, 업데이트 수행
-	        userRepository.save(mu);
-	    }
-			
+	    // 0207 추가 
+		public List<Memo> searchUserMemos(String username, String keyword) {
+			 // 사용자 이름과 키워드를 이용하여 메모를 검색하는 메서드 구현
+			System.out.println("검색");
+	        return memoRepository.findByUser_UsernameAndContentContaining(username, keyword);
 		}
-*/
-	
+
+		public void deleteAllUserMemos(String username) {
+		    List<Memo> userMemos = memoRepository.findByUser_Username(username);
+		    memoRepository.deleteAll(userMemos);
+		}
 
 	    
     

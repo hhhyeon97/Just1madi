@@ -111,8 +111,6 @@ td {
 }
 
 }
-
-
 #menuicon {
 	position: relative;
 	left: 150px;
@@ -147,11 +145,10 @@ td {
     }
 }
 
-/* 수정된 부분: 아이콘과 텍스트 사이에 간격 추가 */
+/* 아이콘과 텍스트 사이에 간격 추가 */
 #menuContainer a:first-child {
 	margin-top: 10px;
 }
-
 </style>
 </head>
 <body>
@@ -183,6 +180,34 @@ document.addEventListener("DOMContentLoaded", function () {
 						<p style="color:gray;">memoong에 접속했습니다<br>‧˚⋆﻿⁽ '-' ⁾⋆﻿˚‧</p>
 				</c:if>
 				<c:if test="${not empty memoList}">
+	
+    <!-- 검색 폼
+    <form method="get" action="/memo/search" class="form-inline mb-2">
+        <div class="form-group">
+            <input type="text" name="keyword" class="form-control" placeholder="검색어를 입력하세요">
+        </div>
+        <button type="submit" class="btn btn-secondary">검색</button>
+    </form>
+    <form method="get" action="">
+
+    <c:if test="${not empty message}">
+        <p style="color: gray;">${message}</p>
+    </c:if>
+  </form>
+    <div class="form-group">
+        <a href="/memo/list" class="btn btn-primary">전체 목록으로 돌아가기</a>
+    </div>
+  -->		
+  
+<!-- 전체 삭제 버튼 추가 -->
+<div class="form-group">
+    <form method="post" action="/memo/deleteAll">
+        <input type="submit" class="btn btn-danger" value="전체 삭제" 
+        onclick="return confirm('정말 모든 메모를 삭제하시겠습니까?');">
+    </form>
+</div>
+  
+  				
 				<!-- 메모 목록 순회 -->
 				<c:forEach var="memo" items="${memoList}" varStatus="status">
 					<tr>
