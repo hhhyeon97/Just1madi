@@ -14,6 +14,7 @@ public interface MemoRepository extends JpaRepository<Memo, Integer> {
 	List<Memo> findByUser_UserNo(int userNo);
 	List<Memo> findByUser_UsernameAndContentContaining(String username, String keyword);
 	List<Memo> findByUser_Username(String username);
+	void deleteById(int memoId);
 
 
 	

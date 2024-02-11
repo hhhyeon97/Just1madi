@@ -32,9 +32,8 @@ body{
     backdrop-filter: blur(1px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    max-width: 500px; /* 최대 너비 설정 */
+    max-width: 500px;   /* 최대 너비 설정 */
     width: 100%; /* 100%로 설정하여 부모 컨테이너에 맞게 유동적으로 변경 */
-    /*min-height: 300px;*/ /* 최소 높이 설정 */
     text-align: center;
     position: relative;
     overflow-y: auto; /* 내용이 많아지면 스크롤이 생기도록 설정 */
@@ -77,6 +76,15 @@ body{
 	background-color:#a6bfe0;
 	border:1px solid #a6bfe0;
 }
+
+/* 활성 상태일 때 배경색 설정 */
+#memobtn:focus,
+#memobtn:active {
+    background-color: #a6bfe0;
+    border: none;
+    outline: none;
+}
+
 a {
 	text-decoration: none;
 	color: inherit;
@@ -87,7 +95,7 @@ table {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top: 35px;
+	margin-top: 60px;
 }
 td {
 	padding: 20px;
@@ -170,62 +178,41 @@ document.addEventListener("DOMContentLoaded", function () {
 		<h2>Memo List</h2>
 		<div id="menuContainer">
 			<a href="/memo/myProfile">정보수정</a> <a href="/custom-logout">logout</a>
+			<form method="post" action="/memo/deleteAll">
+							<input type="submit" class="btn btn-danger" value="전체 삭제"
+								onclick="return confirm('정말 모든 메모를 삭제하시겠습니까?');">
+						</form>
 		</div>
 		<a href="javascript:void(0);" id="menuButton"><i id="menuicon"
-			class='bx bx-menu'></i>
-		</a>
+			class='bx bx-menu'></i> </a>
 		<table>
 			<tbody>
-				<c:if test="${empty memoList}"> <!-- 메모리스트가 없을 때  -->
-						<p style="color:gray;">memoong에 접속했습니다<br>‧˚⋆﻿⁽ '-' ⁾⋆﻿˚‧</p>
+				<c:if test="${empty memoList}">
+					<!-- 메모리스트가 없을 때  -->
+					<p style="color: gray;">
+						memoong이 비어있어요 !<br>‧˚⋆﻿⁽ '-' ⁾⋆﻿˚‧
+					</p>
 				</c:if>
 				<c:if test="${not empty memoList}">
-	
-    <!-- 검색 폼
-    <form method="get" action="/memo/search" class="form-inline mb-2">
-        <div class="form-group">
-            <input type="text" name="keyword" class="form-control" placeholder="검색어를 입력하세요">
-        </div>
-        <button type="submit" class="btn btn-secondary">검색</button>
-    </form>
-    <form method="get" action="">
 
-    <c:if test="${not empty message}">
-        <p style="color: gray;">${message}</p>
-    </c:if>
-  </form>
-    <div class="form-group">
-        <a href="/memo/list" class="btn btn-primary">전체 목록으로 돌아가기</a>
-    </div>
-  -->		
-  
-<!-- 전체 삭제 버튼 추가 -->
-<div class="form-group">
-    <form method="post" action="/memo/deleteAll">
-        <input type="submit" class="btn btn-danger" value="전체 삭제" 
-        onclick="return confirm('정말 모든 메모를 삭제하시겠습니까?');">
-    </form>
-</div>
-  
-  				
-				<!-- 메모 목록 순회 -->
-				<c:forEach var="memo" items="${memoList}" varStatus="status">
-					<tr>
-						<td><a href="<c:url value='/memo/detail/${memo.memoId}'/>">${memo.shortContent}</a>
-						<hr>
-						</td>
-						<td><input type="button" id="cusbtn2" class="btn btn-white"
-							value="Edit" onclick="location='/memo/edit/${memo.memoId}';"></td>
-						<td>
-							<form method="post"
-								action="<c:url value='/memo/delete/${memo.memoId}' />"
-								style="display: inline;">
-								<input type="submit" id="cusbtn" class="btn btn-white"
-									value="Delete" onclick="return confirm('정말 삭제하시나요?');" />
-							</form>
-						</td>
-					</tr>
-				</c:forEach>
+					<!-- 메모 목록 순회 -->
+					<c:forEach var="memo" items="${memoList}" varStatus="status">
+						<tr>
+						  <!--<td><input type="checkbox" name="selectedMemos" value="${memo.memoId}"></td>-->
+							<td><a href="<c:url value='/memo/detail/${memo.memoId}'/>">${memo.shortContent}</a>
+								<hr></td>
+							<td><input type="button" id="cusbtn2" class="btn btn-white"
+								value="Edit" onclick="location='/memo/edit/${memo.memoId}';"></td>
+							<td>
+								<form method="post"
+									action="<c:url value='/memo/delete/${memo.memoId}' />"
+									style="display: inline;">
+									<input type="submit" id="cusbtn" class="btn btn-white"
+										value="Delete" onclick="return confirm('정말 삭제하시나요?');" />
+								</form>
+							</td>
+						</tr>
+					</c:forEach>
 				</c:if>
 			</tbody>
 		</table>

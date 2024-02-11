@@ -74,6 +74,10 @@ public class MemoService {
 		    memoRepository.deleteAll(userMemos);
 		}
 
+		public void deleteMemoById(int memoId) {
+			 memoRepository.deleteById(memoId);
+		}
+
 	    
     
 }
