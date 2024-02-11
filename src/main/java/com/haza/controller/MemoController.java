@@ -256,15 +256,6 @@ public class MemoController {
         return "redirect:/memo/list"; // 삭제 후 메모 리스트 페이지로 리다이렉트
     }
     
-    @PostMapping("/memo/deleteSelected")
-    public String deleteSelectedMemos(@RequestParam("selectedMemos") List<Integer> selectedMemos) {
-        for (int memoId : selectedMemos) {
-            memoService.deleteMemoById(memoId);
-        }
-        return "redirect:/memo/list"; // 삭제 후 메모 리스트 페이지로 리다이렉트
-    }
-    
-    
     
     
 }

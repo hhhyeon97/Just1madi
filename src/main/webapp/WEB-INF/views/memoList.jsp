@@ -32,11 +32,11 @@ body{
     backdrop-filter: blur(1px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    max-width: 500px;   /* 최대 너비 설정 */
-    width: 100%; /* 100%로 설정하여 부모 컨테이너에 맞게 유동적으로 변경 */
+    max-width: 500px;
+    width: 100%;
     text-align: center;
     position: relative;
-    overflow-y: auto; /* 내용이 많아지면 스크롤이 생기도록 설정 */
+    overflow-y: auto;
     margin-top: 30px;
     margin-bottom: 30px;
     max-height:500px;
@@ -131,8 +131,8 @@ td {
 	position: absolute;
 	top: 45px; /* 메뉴가 위치할 상대적인 높이 조절 */
 	right: 10px;
-	background-color: #fff; /* 메뉴 배경 색상 */
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	padding: 15px;
 	border-radius: 10px;
 }
@@ -140,23 +140,23 @@ td {
 	display: block;
 	margin-bottom: 2px;
 	text-decoration: none;
-	color: #333; /* 메뉴 텍스트 색상 */
+	color: #333;
 	
-	transition: color 0.3s; /* 색상 변경 시 부드러운 전환 효과 */
+	transition: color 0.3s;
     padding: 8px; /* 링크의 내부 여백 설정 */
 
     /* 배경색과 마우스를 올렸을 때의 스타일 변경 */
     &:hover {
-        color: #fff; /* 마우스를 올렸을 때의 텍스트 색상 */
-        background-color: #a6bfe0; /* 마우스를 올렸을 때의 배경색 */
+        color: #fff;
+        background-color: #a6bfe0;
         border-radius: 4px;
     }
 }
-
 /* 아이콘과 텍스트 사이에 간격 추가 */
 #menuContainer a:first-child {
 	margin-top: 10px;
 }
+
 </style>
 </head>
 <body>
@@ -198,7 +198,6 @@ document.addEventListener("DOMContentLoaded", function () {
 					<!-- 메모 목록 순회 -->
 					<c:forEach var="memo" items="${memoList}" varStatus="status">
 						<tr>
-						  <!--<td><input type="checkbox" name="selectedMemos" value="${memo.memoId}"></td>-->
 							<td><a href="<c:url value='/memo/detail/${memo.memoId}'/>">${memo.shortContent}</a>
 								<hr></td>
 							<td><input type="button" id="cusbtn2" class="btn btn-white"

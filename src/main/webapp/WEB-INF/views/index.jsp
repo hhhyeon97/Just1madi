@@ -12,8 +12,6 @@
 	crossorigin="anonymous">
 <!-- 사용자가 확대/축소를 할 수 있도록 허용 -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- 확대/축소 제어
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"> -->
 <script type="text/javascript" src="resources/js/login.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <script

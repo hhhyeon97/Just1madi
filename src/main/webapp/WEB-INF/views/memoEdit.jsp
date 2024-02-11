@@ -25,7 +25,7 @@
 	backdrop-filter: blur(1px);
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	padding: 20px;
-	max-width: 400px; /* 유동적인 폭을 제한하기 위해 max-width 추가 */
+	max-width: 400px;
 	width: 100%;
 	text-align: center;
 	position: relative;
