@@ -72,8 +72,8 @@
 			<h2>welcome memoong</h2>
 			<%-- 실패 메시지가 있는 경우에만 표시 --%>
 			<c:if test="${param.error == 'true'}">
-				<div class="alert alert-danger">회원이 아니거나 비밀번호가 틀립니다!
-				</div>
+				<span style="color:#f783b7;">회원이 아니거나 비밀번호가 틀립니다!
+				</span>
 			</c:if>
 			<div class="form-group">
 				<label for="username">닉네임</label> <input type="text" id="username"
